@@ -13,7 +13,7 @@ prose, and visuals — that is the uniqueness. Never clone one skill's section l
 
 ## When to make an artifact
 Only these skills, and only when the output is **(1) shared or presented AND (2) visual**:
-**`onboard` (the Revenue Report) · `team-report` · `review-pipeline` · `map-committee`.**
+**`onboard` / `revenue-report` (the Revenue Report) · `review-pipeline` · `map-committee`.**
 Every other skill outputs plain markdown/text. Never render an artifact for a conversational answer,
 an action draft, or read-once working material. When unsure, text is the right default.
 

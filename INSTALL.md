@@ -57,8 +57,8 @@ history is in, the day-to-day is **`/opennous:focus`**.
 - Daily — `focus` (your morning worklist) · `whats-changed` · `ask-nous`
 - Accounts & deals — `build-record` · `plan-account` · `brief` · `reach-out` · `map-committee` ·
   `objection-prep`
-- Pipeline & reporting — `review-pipeline` · `triage-leads` · `forecast` · `win-loss` ·
-  `market-read` (founder) · `role-report` (per seat) · `team-report` (whole-team roll-up)
+- Pipeline & reporting — `review-pipeline` · `triage-leads` · `forecast` · `revenue-report` (the
+  one report: it absorbed win-loss, market-read and team-report) · `role-report` (per seat)
 
 **How it works:** you (this agent) extract facts and insights from calls/emails on your own tokens;
 Nous does the identity resolution, ICP scoring, and memory — the part that compounds. Raw data stays

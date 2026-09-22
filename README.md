@@ -61,10 +61,11 @@ plugins/opennous/
 ## Status
 
 Live. The MCP surface is exactly **10 primitives** (the seven data tools + `whoami` + `set_icp` + `record_closed_deals`), and all
-**20 skills are shipped**: setup & ingestion (`onboard`, `status`, `sync`, `backfill`), daily
+**17 skills are shipped**: setup & ingestion (`onboard`, `status`, `sync`, `backfill`), daily
 (`focus`), accounts & deals (`build-record`, `plan-account`, `brief`, `reach-out`, `map-committee`,
-`objection-prep`, `win-loss`), pipeline (`review-pipeline`, `forecast`, `whats-changed`,
-`triage-leads`), and ask & reporting (`ask-nous`, `role-report`, `market-read`, `team-report`).
+`objection-prep`), pipeline (`review-pipeline`, `forecast`, `whats-changed`, `triage-leads`), and
+ask & reporting (`ask-nous`, `revenue-report` — the one report: what happened, what the CRM
+missed, why deals are lost, the customer book, what the market says — and `role-report` per seat).
 
 There is one MCP server and only one. Full plan, tool signatures, and the locked skill catalog:
 [revenue-plugin overview](https://github.com/NousC/opennous/blob/main/docs/revenue-plugin/README.md).
