@@ -114,9 +114,12 @@ Title it "Revenue Intelligence Review" with the company name from `whoami`. Bene
 line: the analysis period, its length in days, and the date generated.
 
 **00 · Scope and Coverage.** Before any finding, so the reader knows what the document can claim.
-The period; the sources and what each contributed, named as real products — HubSpot, Gmail and
-Fellow — with one sentence stating that these three are the entire basis, so nothing else is
-assumed to have been read; the counts (opportunities, accounts, conversations by type, people); and
+The period; the sources and what each contributed, taken from `revenue_report_data.coverage.sources`
+— each already carries the product's real name and the span it covers, so the table reads
+"Fellow · 632 · Jun 2026 – Sep 2026". Name them in one sentence as the entire basis of the
+document, so nothing else is assumed to have been read. `coverage.other_providers` holds
+enrichment and scoring services: they are not sources this report read and never appear in that
+table. Never list a source the payload does not return, and never omit one it does; the counts (opportunities, accounts, conversations by type, people); and
 the gaps as a Data Coverage Gap phrased as what they prevent. Close with one short paragraph
 distinguishing an observed fact from a derived metric from an interpretation.
 *Data: `revenue_report_data.coverage` and `.provenance`, every payload's `provenance.caveats`,
