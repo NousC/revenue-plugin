@@ -77,7 +77,7 @@ unit. Read `supports` on every payload first and never write a section it marks 
 | `win_loss_data` | once, `{ months }` | closed cohort, cause taxonomy with its unclassified bucket, objections, competitors, `paths` (ordered steps with the won rate beside the lost), `paths.traces`, the rep's stated reason |
 | `customer_success_data` | once | active customers and MRR, at risk with the strongest reason and quote, expansion with the product asked for, churned, the conversation-versus-CRM evidence split |
 | `insights` | once, no category | product, positioning, market and buyer themes with mention counts and verbatim evidence |
-| `metrics` | `{ measure: 'tasks_created', since_days: 30, group_by: 'owner' }` and `{ measure: 'signals_raised', since_days: 30, group_by: 'kind' }` | what the system produced from the same record in the last 30 days |
+| `metrics` | `{ measure: 'signals_raised', since_days: 30, group_by: 'kind' }` and `{ measure: 'tasks_created', since_days: 30, group_by: 'person' }` | every kind of signal raised from the record in the last 30 days, and the tasks created from it by the person each is for |
 | `get_account` | once, for the single account examined in section 05 | the dated record behind that example |
 | `whoami` | once | the company name, for the title |
 
@@ -165,15 +165,19 @@ Blocks: `path` · `chart` grouped won vs not-won · `table` of causes with `emph
 `timeline` of the single account · `prose`.
 
 **06 · What HubSpot Does Not Capture.** (Title it with the provider's name from
-`crm_coverage_data.crm`.) The structured signal inside recorded conversations that no
+`crm_coverage_data.crm`.) Show the WHOLE signal vocabulary the record produced, not the three
+largest kinds: risk signals, expansion asks, buying signals, objections, competitors, budget,
+timeline, authority, staff changes, adoption. A reader who sees three kinds concludes the system
+finds three things. Then, beneath the signals, the tasks created from the same record in the same
+window, by the person each is for — name them, with the count each, and the share unassigned. The structured signal inside recorded conversations that no
 CRM field holds: risks, outstanding commitments, unanswered questions, expansion asks, close-date
 history. Then what the system produced from the same record in the last 30 days — tasks created and
 who they are for, signals raised by kind, accounts affected — as the demonstration. State plainly
 that nothing was written to the CRM.
 *Data: `crm_coverage_data` (all of it; honour `supports.coverage_share_is_the_finding`);
 `metrics` tasks_created by owner and signals_raised by kind.*
-Blocks: `metrics` · `chart` bar of signals by kind · `table` of tasks by owner · `evidence` (ONE
-quote) · `prose`.
+Blocks: `metrics` · `chart` bar of signals by kind (every kind with a count, ranked) · `table` of
+tasks by person with the count each · `evidence` (ONE quote) · `bullets`.
 
 **07 · Recommended Actions.** The only section carrying recommendations. A short summary paragraph,
 then three or four grouped findings each with two to four bullets, then the priority table:
