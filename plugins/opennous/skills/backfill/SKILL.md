@@ -111,9 +111,9 @@ At the end of each stage, report its quarantine list so a re-run can retry just 
 ## On completion (after all stages + the enrich/train/score pass)
 1. **Trigger the reporting distillation.** A backfill records the raw material for both reporting
    surfaces — objection/pain Intel (via `record`) that becomes `role-report`'s deal-blockers, and
-   product/positioning/market/buyer insights (via `record_insight`) that become `market-read`'s
-   themes — but the distilled layers are built server-side, not at write time. Company **themes**
-   re-synthesize lazily the next time `market-read` reads them (no action). The **objection handlers**
+   product/positioning/market/buyer insights (via `record_insight`) that become the revenue
+   report's market section — but the distilled layers are built server-side, not at write time.
+   Company **themes** re-synthesize lazily the next time `revenue-report` reads them (no action). The **objection handlers**
    behind `role-report` are built by a weekly job, so after a bulk import ask Nous to run the
    intelligence pass now (the server's `runIntelligenceOnce`) rather than wait a week. If no trigger
    is exposed yet, tell the user role-report will populate on the next weekly run.

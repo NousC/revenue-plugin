@@ -1,16 +1,17 @@
 ---
 name: revenue-report
-description: Reconstructs how revenue actually moved over the window and diagnoses where it leaks — pipeline created and converted, where deals die, quantified revenue leakage, what a winning deal looks like here, what the CRM missed, and a playbook of changes drawn from their own data. Use after a backfill completes, when the user asks for "the revenue report", "how did the last six months go", "where are we losing deals", or when onboarding reaches its payoff. Produces ONE document. For the deep read on closed deals alone, use `win-loss`; for today's worklist use `focus`.
+description: THE revenue report — one document that shows a team what their conversations know that their CRM does not. Over a window (the backfill, or the last N months) it reconstructs how revenue moved, what the CRM missed, where pipeline leaks and what is still savable, why deals were lost as the path they took, which customers are at risk or asking for more, what the market keeps saying, what winning looks like, and what OpenNous would have done in the last 30 days. Use it after a backfill, when anyone asks for "the revenue report", "how did the last six months go", "what did we miss", "why do we lose", "who is at risk", "what are buyers telling us", or when onboarding reaches its payoff. It absorbed win-loss, market-read and team-report: run this. Produces ONE document.
 ---
 
 # Revenue report
 
-The first time this operator sees their whole revenue motion in one place: six months that lived
-scattered across a CRM, a notetaker and an inbox, reconstructed into how revenue actually moved
-— not what the CRM says today.
+One document, ten sections, one story: **your conversations know things your CRM does not, here
+is what they know, and here is what to do about it.** Every section is a headline that is a
+conclusion, one visual, and the evidence under it — the names and the buyer's own words that make
+the number believable.
 
-**Diagnostic, not dashboard.** This is the difference between a report someone reads once and one
-they act on:
+**Diagnostic, not dashboard.** The difference between a report someone reads once and one they
+act on:
 
 > ❌ Stage 3 → Stage 4 conversion: 34%
 >
@@ -21,203 +22,179 @@ they act on:
 
 Every number earns its place by implying an action.
 
-
 ## Who you are writing it for
 
-**Read the role block in your context before you decide what this report leads with.** It
-carries the reader's objective, what to lead with, and — the part that matters most — what to
-leave out.
+**Read the role block in your context before you decide what this report leads with.** It carries
+the reader's objective, what to lead with, and what to leave out. The same window produces a
+different document for a CRO (coverage against the number, forecast risk), a RevOps lead (where
+the funnel leaks, with counts), a founder (what the market says, what to change) and a CS lead
+(the customer sections first). The role decides ORDER and EMPHASIS, never the honesty: sourcing,
+the `[n]` markers, and saying plainly what the data cannot support are the same for every seat.
 
-The same six months produce a different document for different seats, and this is not tone.
-A CRO opens on pipeline coverage against the number and forecast risk; naming one deal as the
-headline finding wastes their read. A RevOps lead opens on where the funnel leaks with counts,
-and treats a named account as evidence of a pattern, never as the finding. An AE opens on the
-deals they own and what changed on each; an aggregate conversion rate tells them nothing about
-which call to make. An SDR wants the accounts worth the next hour and the angle — a strategy
-essay is the wrong document entirely.
+- **The `Leave out` line is binding.**
+- **No role block, or several roles?** Write the whole-book read in the order below.
+- This is not the report for an SDR or an AE working today's list — that is `focus` or
+  `review-pipeline`. Bending this document to those asks produces an approximation.
 
-Two rules:
+## The data, and where every number comes from
 
-- **The `Leave out` line is binding.** It is what makes the report feel written for someone
-  rather than addressed to them. Including it anyway because it seemed useful is the failure.
-- **No role block, or several roles?** Write the whole-book read (the default below). With
-  several, lead with the most senior and say which hat each section is under.
+**You narrate; you never count.** Every figure is computed server-side by a tool and handed over
+raw with a unit. A model computing a median across a hundred opportunities gets it wrong
+confidently and differently each run. Read `supports` on every payload FIRST and never write a
+section it marks false; carry `provenance.caveats` into section 02 verbatim.
 
-Everything below still holds. The role decides the ORDER and the EMPHASIS, never the honesty:
-sourcing, the `[n]` markers, and saying plainly what the data cannot support are the same for
-every seat.
-## Tools
-
-`query` for the cohorts, stages and timings · `pipeline` for the live funnel · `get_account` for
-the accounts you name · `insights` for what the market said · `score` for fit · `whoami` for
-whose slice this is.
-- `save_page` — file the finished document into Pages (see "Save it to Pages").
-
-## What to reconstruct
-
-Pull what the record supports; skip what it doesn't. Never infer a funnel nobody recorded.
-
-- **Pipeline created and converted** — opportunities and value created, by source, segment and
-  owner. Then the funnel: lead → meeting → opportunity → qualified → won.
-- **Where it dies** — the stage-to-stage drop that costs the most, in dollars, not percent.
-- **Velocity** — median days between stages, time to close, and time sitting idle. Idle time is
-  the one most teams have never measured.
-- **Follow-up behaviour** — meeting → follow-up latency, unanswered threads, meetings with no
-  next step booked.
-- **Stakeholder coverage** — single- versus multi-threaded, and whether an economic buyer ever
-  appeared.
-- **Momentum** — activity accelerating or decaying before wins and losses.
-- **Friction** — the objections, competitors, pricing moments and technical blockers that recur,
-  and at which stage they land.
-- **What converts** — which segments, use cases, sources and signals actually produce revenue
-  rather than meetings.
-
-## The sections
-
-Eleven, in this order. The order is the argument: what happened, whether you can trust it, where
-it leaks, what winning looks like, what is still savable, and what to change. Each one opens with
-a **thesis** — one sentence stating what the section found, which a reader could disagree with —
-and never a label. "Most value loss begins between discovery and evaluation" rather than "Pipeline
-performance".
-
-⛔ Never write that thesis as a negation followed by a correction. No "it is not X, it is Y", no
-"the funnel is not broken at the bottom — the loss begins earlier". State the finding once,
-positively, and stop. The construction sounds insightful and says half as much as the plain
-sentence.
-
-**A section with no number, no series and no quote is not a section.** Cut it. Padding a thin
-window with prose is what makes a report read like an essay nobody finishes.
-
-**01 — Executive summary.** The headline numbers first: pipeline created, closed won, created→won
-rate, and the leakage figure. Then two sentences on what the window says. Then three to five
-bullets of the biggest takeaways. Then the priorities, as a table:
-
-| Priority | Why it matters | 30-day action |
+| Tool | Call | What it carries |
 |---|---|---|
-| Multi-thread before proposal | 79% of wins had 3+ stakeholders; 38% of losses did | No proposal leaves without the economic buyer on a call |
+| `revenue_report_data` | once, `{ months }` | headline · coverage · funnel · created-by-outcome · won-vs-not-won separators · velocity · leakage over the OPEN pipeline · recovery set · win/loss counts |
+| `crm_coverage_data` | once, `{ since_days: 30 }` | activity by source (in the CRM vs not) · commitments still open · questions unanswered · risks said in conversation · going dark · close dates slipped · expansion unpitched |
+| `win_loss_data` | once, `{ months }` | the closed cohort · the cause taxonomy with its unclassified bucket · objections that decided it · competitors · `paths` (the ordered steps lost deals took, beside the won rate) · `paths.traces` (lost deals traced, with quotes) · the rep's stated reason beside the evidence |
+| `customer_success_data` | once | active customers and MRR · at risk with the strongest reason and quote · expansion with what they asked for · churned · how much came from conversations vs CRM fields |
+| `insights` | once, no category | what the market told us: product, positioning, market, buyer — with mention counts and verbatim evidence |
+| `metrics` | `{ measure: 'tasks_created', since_days: 30, group_by: 'source' }` and `{ measure: 'signals_raised', since_days: 30, group_by: 'kind' }` | what OpenNous DID with what it read in the last 30 days |
+| `get_account` | for every account you name | the record behind the name, and the `[n]` citation |
+| `whoami` | once | whose company this is, for the title |
+| `save_page` | once, at the end, in a coding agent | files the finished document into Pages (see "Save it to Pages") |
 
-**02 — Data coverage and method.** The section that makes the rest believable, so never cut it to
-save room. How much was reconstructed and from where:
+Call the five payload tools at the start, in one go. Then write.
 
-| Source | Backfilled | Coverage | Used for |
-|---|---|---|---|
-| CRM | 137 opportunities, 14 stages | Mar 1 – Aug 31 | Stage history, values, outcomes |
-| Gmail | 8,462 threads | Mar 1 – Aug 31 | Follow-up timing, silence, stakeholder reach |
+## The document
 
-Then say plainly how to read the figures. An **observed fact** is present in a source record: a
-stage change, an email timestamp, an attendee, a sentence in a transcript. A **derived metric** is
-computed from observed facts: time to follow-up, stakeholder count, days idle, stage duration. An
-**inferred pattern** is an association across the won and lost cohorts and is not proof of cause.
-A **recommendation** is an operating change suggested by a repeated pattern plus current exposure.
-Name every gap: a source that is not connected is a finding, not an omission.
+Ten sections, in this order. The order is the argument: what happened → how much of it we could
+see → what the CRM missed → where it leaks and what is savable → why deals are lost → the customer
+book → what the market says → what winning looks like → what OpenNous would have done → what to
+do next. Each section opens with a **thesis** — one sentence stating what it found, which a
+reader could disagree with — never a label.
 
-**03 — Pipeline performance.** The funnel, read off the stage HISTORY rather than where records sit
-today:
+⛔ Never write a thesis as a negation followed by a correction ("it is not X, it is Y"). State the
+finding once, positively, and stop.
 
-| Stage | Entered | Advanced | Conversion | Median days |
-|---|---|---|---|---|
+**A section with no number, no series and no quote is not a section.** Cut it. **At most one
+chart per section.** Lead with the visual, then say what it MEANS in two sentences — never restate
+the numbers the reader can see. Under every chart or metric row that rests on conversations, an
+**evidence** block: two to four rows of *account · their verbatim words · what it became*.
 
-Report it in the team's OWN stage names, in the order their deals actually move through them —
-never mapped onto a ladder of ours they do not use. Then created pipeline by outcome: won, lost,
-no-decision, still open, with value and share. Close with the stage where the most value stops.
+**01 — What happened.** The headline numbers: pipeline created, closed won, created→won rate, and
+the leakage figure — then two sentences on what the window says, three to five takeaways, and the
+priorities as a table (priority · why it matters · 30-day action).
+*Data: `revenue_report_data.headline`, `.leakage.total`.* Blocks: `metrics` (4) · `prose` · `table`.
 
-**04 — Revenue leakage.** Lead with one figure — *potential revenue leakage identified: $1.26M* —
-then break it down by pattern with the pipeline each accounts for:
+**02 — How much of this we could see.** The section that makes the rest believable; never cut it.
+Sources, what was backfilled, the window each covers, what each was used for. Then how to read the
+figures: an **observed fact** is in a source record; a **derived metric** is computed from observed
+facts; an **inferred pattern** is an association across cohorts and is not proof of cause; a
+**recommendation** is a repeated pattern plus current exposure. Name every gap — a source that is
+not connected is a finding, not an omission — and carry every payload's `provenance.caveats` here.
+*Data: `revenue_report_data.coverage`, `.provenance`; every other tool's `provenance.caveats`.*
+Blocks: `metrics` · `table` of sources · `prose`.
 
-| Leakage pattern | Pipeline affected | Observed behaviour | Why it matters | Priority |
-|---|---|---|---|---|
-| No engagement for >14 days | $420K | No recorded touch either way for two weeks | Deals past 14 days quiet close at a third of the base rate | High |
+**03 — What the CRM did not know.** The section that opens eyes. Lead with the share of recorded
+conversations in the last 30 days that never reached the CRM, by source. Then the gaps, each with
+its n and three named accounts: commitments made on calls and email still open in nobody's CRM,
+buyer questions nobody answered, risks said in conversation that no CRM field can hold, accounts
+with an open deal gone quiet, close dates the CRM moved more than once, expansion a customer asked
+for with no deal open. Say plainly that CRM tasks are not synced, so "unfiled" means "not in the
+graph as filed", never "we checked HubSpot".
+*Data: `crm_coverage_data` — `activity_by_source`, `commitments_unfiled`, `questions_unanswered`,
+`risks_in_conversation`, `going_dark`, `close_dates_slipped`, `expansion_unpitched`.*
+Blocks: `metrics` (not-in-CRM %, commitments, questions, risks) · `chart` `bar` of the gaps by n ·
+`evidence` (3 rows: the strongest quotes) · `prose`.
 
-⚠️ These figures **overlap and never sum to a total.** One deal can be quiet, single-threaded and
-missing an economic buyer at once, so each row is exposure on its own. Say so in the section; a
-reader who adds them up and gets more than the pipeline stops trusting the whole document.
-**Without deal values, run the same patterns on deal COUNT and say plainly that dollars need a CRM
-or Stripe connected.**
+**04 — Where it leaks, and what is still savable.** One figure first — *potential revenue leakage
+identified: $1.26M* — then the patterns with the pipeline each accounts for. ⚠️ These figures
+**overlap and never sum**; say so. Then the recovery set: the OPEN deals carrying several failure
+modes at once, named, with the intervention. ⛔ Never call the total "recoverable revenue".
+Without deal values, run the same patterns on deal count and say dollars need a CRM or Stripe.
+*Data: `revenue_report_data.leakage`, `.recovery`; `get_account` for the names.*
+Blocks: `chart` `bar` of `leakage.patterns` · `table` of the recovery set with `emphasis` on the
+intervention · `prose` on the overlap.
 
-**05 — What winning deals did differently.** Built from their own closed-won deals, against the
-ones that did not close:
+**05 — Why deals are lost.** The path, not the dropdown. Lead with the most common ordered
+sequence lost deals took and the share that took it — *"of 118 lost deals, 32% went: no economic
+buyer → close date slipped → pricing objection → competitor named → went quiet"* — and the won
+rate for the same path beside it, because a pattern both cohorts share is not a loss pattern.
+Then the cause taxonomy with its unclassified bucket (a residual is a feature: it is the deals we
+cannot explain, and saying so beats guessing), the objections that decided it, who we lose to
+where a competitor resolved to a name, and the rep's stated reason beside the evidence — where the
+two disagree, the disagreement is the finding. Close with one lost deal traced, with quotes.
+*Data: `win_loss_data.paths` (`patterns[0]`, `steps`, `traces`), `.taxonomy`, `.objections`,
+`.competitors`, `.rep_stated`.* If `supports.paths` is false, write the taxonomy and say the
+paths need the close records. If `supports.report` is false (too few closed deals), keep this to
+the counts and say so. Blocks: `path` · `table` of the taxonomy with `emphasis` on controllable ·
+`chart` `grouped` won vs lost where the sample supports it · `evidence` (one traced deal) · `prose`.
 
-| Signal | Won | Lost / no decision | Gap |
-|---|---|---|---|
-| Stakeholders engaged (median) | 4 | 2 | 2× |
-| Hours to follow up after a meeting | 9.6 | 34.2 | 3.6× slower |
+**06 — The customer book: who is at risk, who is asking for more.** Expansion and churn are both
+visible before the outcome. Lead with active customers and MRR, then two columns side by side:
+**at risk** (strongest reason first — a cancellation date, their own churn model, paying with
+nobody logging in, or what they said, with the quote) and **asking for more** (an ask in their own
+words with the product, a priced upgrade never discussed). Say how many rows rest on a conversation
+rather than a CRM field. A declined product is never pitched back. An account is at risk on one
+tier-1 reason or two independent tier-2 ones; do not put an invoice complaint on the list alone.
+*Data: `customer_success_data` — `counts`, `totals`, `at_risk`, `expansion`, `churned`,
+`supports`.* Blocks: `metrics` (active, MRR, at risk, expansion) · `columns` (at risk `bad` ·
+asking for more `good`, 4 cards each with quotes) · `prose`.
 
-State the cohort sizes beside any percentage, and say **observed**, not proven — these are
-associations, and multi-threaded deals tend to be the same deals with an engaged economic buyer.
-Fold the segment or ICP cut in here as one extra table where the sample supports it, with its n.
-It does not earn its own section.
+**07 — What the market keeps telling you.** The company-level voice of market: the four themes —
+product, positioning, market, buyer — with mention counts and one verbatim line each, ranked by
+how many accounts raised it. The section says what *we* should change about the product and the
+story; a theme with one mention is a remark, not a theme.
+*Data: `insights` (all categories).* Blocks: `chart` `bar` of themes by accounts · `evidence`
+(4 rows, one per category) · `prose`.
 
-**06 — Pipeline velocity.** Days per phase, won against not-won, and the longest silence while the
-deal was live — the measure most teams have never taken. Then what the gap means for the forecast:
-behavioural deterioration is usually visible in email and meeting activity two to three weeks
-before the CRM stage moves, which is why slow deals get recognised as risky too late.
+**08 — What winning looks like here.** Built from their own closed-won deals against the ones that
+did not close: stakeholders engaged, hours to follow up, whether an economic buyer ever appeared,
+days idle — with cohort sizes beside every figure and the word **observed**, never proven. Fold
+the ICP cut in as one extra table where the sample supports it.
+*Data: `revenue_report_data.separators`, `.cohorts`, `.velocity`; `score` for the ICP cut.*
+Blocks: `chart` `grouped` won `good` vs not-won `bad` · `table` · `prose` with the n's.
 
-**07 — Current pipeline recovery.** The section that makes this report worth reading twice, so give
-it room. Apply the historical patterns to the deals that are STILL OPEN:
+**09 — What OpenNous would have done in the last 30 days.** The value, made concrete. In the last
+30 days it read N conversations and from them filed N tasks (by source: "23 from 14 Fellow calls,
+9 from Gmail"), raised N signals (objections, competitors, risk, expansion, staff changes), flagged
+N customers, and would have proposed N field updates. Then a table of the tasks it filed — account,
+the commitment, who owes it, from which call — and the write-back it would have made, marked as a
+preview: nothing was written to the CRM. Everything older than 30 days is history; a task filed
+late is not a task.
+*Data: `metrics` `tasks_created` by source and by owner, `signals_raised` by kind;
+`crm_coverage_data.commitments_unfiled.rows` for the table; `customer_success_data.at_risk.n`.*
+Blocks: `metrics` (conversations read, tasks filed, signals raised, customers flagged) · `table`
+of tasks · `evidence` (3 rows: signal → what it became) · `prose`.
 
-| Account | Value | Days quiet | Patterns present | Intervention |
-|---|---|---|---|---|
-
-Name the accounts. ⛔ Never call the total "recoverable revenue" — it is pipeline where a specific,
-observable failure mode was found and where something can still be done. Say which of them need a
-manager rather than a rep, and which should be re-qualified out rather than nursed.
-
-**08 — Win/loss snapshot.** A TEASE, not an analysis: the counts, the values, the no-decision pool,
-and at most one table. Two or three sentences, then say the full read is the `win-loss` skill.
-⛔ Do not analyse loss reasons here, do not name competitors, and do not quote buyers on why they
-chose. That is the other report, and writing it twice makes one of them padding.
-
-**09 — The next 30 days.** Five to ten operating changes, each built on a figure from this report:
-
-| Operating change | Trigger | Owner | Success measure |
-|---|---|---|---|
-| Follow up within 24 hours | Any customer meeting ends | AE | Median hours to next touch under 12 by day 30 |
-
-Then what the system should watch continuously: deal momentum, the stakeholder map, commitments
-made on both sides, risk language, and whether observed activity supports the stage and close date.
-
-**10 — Appendix: one account, reconstructed.** A single real account as a dated timeline — date ·
-source · observed event · what it meant commercially — plus a short table of metric definitions.
-This is the proof the reconstruction is real, so pick an account with a genuine trail.
-
-**11 — How this report was generated.** The closing page. When it ran, over what window, from which
-sources, how a figure was computed, and what it refreshes from. Section 02 says what the DATA
-covers; this says what the RUN did, which is the question somebody asks three weeks later when a
-number has moved. End with the limits, in plain words.
-
-## Which seats this report is for
-
-The founder, the CRO and the VP Sales — the seats that think in coverage, leakage and what to
-change. The role block still decides ORDER and EMPHASIS within these eleven sections.
-
-It is **not** the report for every seat. An SDR needs the accounts worth the next hour and the
-angle, which is `triage-leads` or `focus`; an AE needs their own deals and what changed, which is
-`review-pipeline`. Bending this document to fit those asks produces an approximation instead of an
-answer.
+**10 — The next 30 days.** Five to ten operating changes, each built on a figure above, as a
+table: change · trigger · owner · success measure. Then, in one short block, how to use OpenNous
+from here: what to ask it each morning, which lists to open, what it watches continuously. Close
+with **one account reconstructed** — a dated timeline of what happened and what it meant — and a
+short table of how this report was generated: when, over what window, from which sources, how a
+figure is computed, what it refreshes from, and the limits in plain words.
+*Data: every section above; `get_account` for the traced account.* Blocks: `table` · `prose` ·
+`timeline` · `table`.
 
 ## Output
 
-Hand it over as ONE document, titled for the window it covers. Then one line in the chat: the
-finding you'd lead with if you had ten seconds, and what you'd do about it.
+Hand it over as ONE document with `present_document`, titled **"Revenue Report — <company name>"**
+from `whoami` and the window it covers. Never the word demo. Pass `generated_from` with the real
+product names behind the sources ("HubSpot", "Gmail", "Fellow"), never internal keys. Then one line
+in the chat: the finding you would lead with if you had ten seconds, and what you would do about it.
 
 ## Save it to Pages
 
-The finished Revenue Report is filed in the workspace's **Pages**, where the team and every
-agent can find it, versioned, with its sources. Not left only in the chat, and not written to the repo:
-raw material (transcripts, emails) stays in git; the finished document lives in Pages.
+The finished report is filed in the workspace's **Pages**, where the team and every agent can find
+it, versioned, with its sources. Not left only in the chat, and not written to the repo: raw
+material (transcripts, emails) stays in git; the finished document lives in Pages.
 
-- **In a coding agent:** call `save_page` once, at the end, with `kind: "report"`, a `title` named for the window, the `period` it covers, `generated_from`, `skill: "revenue-report"`, the document as `markdown` with citations as [1], [2], and its `sources` in that same order (each with the `ref` the tools printed). Then give
-  the operator one line: the finding, and the page link it returns.
-- **In the app:** `present_document` with `kind: "report"` files it for you.
+- **In a coding agent:** call `save_page` once, at the end, with `kind: "report"`, a `title` named
+  for the window, the `period` it covers, `generated_from`, `skill: "revenue-report"`, the document
+  as `markdown` with citations as [1], [2], and its `sources` in that same order (each with the
+  `ref` the tools printed). Then give the operator one line: the finding, and the page link.
+- **In the app:** `present_document` files it as a page on its own.
 
 ## Rules
 
 - **Named accounts and real numbers, or cut the line.** "Several deals stalled" is not a finding.
 - **Say "associated with", never "caused".** You are reading correlation in one team's history.
-  Deals with an economic buyer closed more often — that is what the record shows, and claiming
-  causality from it is the fastest way to lose a numerate reader.
-- **Admit thin samples.** A pattern drawn from four deals says so. Confident emptiness is the
-  fastest way to lose trust in a report like this.
-- **Their words, not yours.** Where a buyer said the thing, quote them, with the date.
+- **Admit thin samples.** A pattern drawn from four deals says so.
+- **Their words, not yours.** Where a buyer said the thing, quote them, with the date, in an
+  `evidence` block. Never paraphrase inside a quote.
+- **The rep's reason is testimony, never the finding.** Show it beside the evidence.
 - **No tracked outcomes means say so.** No CRM stages and no Stripe: make it a finding, note that
   the ICP stays a hypothesis until deals close, and never invent revenue nobody recorded.
+- **Nothing was written to the CRM.** Section 09 is a preview; say so in the section.

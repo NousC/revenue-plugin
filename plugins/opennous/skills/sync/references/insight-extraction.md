@@ -61,7 +61,7 @@ logistics, pleasantries, or anything only WE said.
 - `content` — ONE plain sentence stating what this means for US, MAX ~18 words. State it, don't
   sharpen it into a slogan: no aphorisms, no "X, not Y", no rule of three, no em dash as a
   connector. Hedge only when the prospect hedged. No preamble, no product-spec voice. These
-  sentences are read back verbatim in `market-read` and get reused in drafts, so a punchy one is a
+  sentences are read back verbatim in the revenue report's market section and get reused in drafts, so a punchy one is a
   liability — write it the way you'd say it to a colleague.
   ❌ "Speed of reply is the real bottleneck, not lead volume."
   ✅ "Teams lose deals on slow replies even when lead volume is fine."

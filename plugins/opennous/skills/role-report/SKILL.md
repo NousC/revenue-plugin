@@ -5,7 +5,7 @@ description: The reporting for YOUR seat — the insights routed to your GTM rol
 
 # Role report
 
-Give the caller the insights that matter to *their seat*, reframed for their role — not the whole-company strategic view (that's the founder's `market-read`). One person can hold several roles (AE + SDR + RevOps); show all of them.
+Give the caller the insights that matter to *their seat*, reframed for their role — not the whole-company strategic view (that's section 07 of the founder's `revenue-report`). One person can hold several roles (AE + SDR + RevOps); show all of them.
 
 ## Tools
 - `whoami` — the caller's identity, `scope`, and **GTM role(s)** (plural). This is what scopes the report. If it returns no role, ask which seat to report for (Account Executive · SDR/BDR · Customer Success · Product & Engineering · RevOps · Marketing · Sales), or default to `account_executive`.
@@ -44,7 +44,7 @@ raw material (transcripts, emails) stays in git; the finished document lives in 
 
 ## Rules
 - **Attribute inline, don't quote.** Blockers carry account counts; a quote is for the drill-in.
-- **Scope to the caller's role(s)** from `whoami` — never show the founder company view here (that's `market-read`); a rep sees only what's routed to their seat.
+- **Scope to the caller's role(s)** from `whoami` — never show the founder company view here (that's `revenue-report`); a rep sees only what's routed to their seat.
 - **Reframe per seat.** The same underlying insight reads differently to an AE vs an SDR vs Engineering — use the role's framing, don't dump raw themes.
 - **Union, labeled.** A multi-role person sees every role they hold, each in its own labeled section — never collapsed into one.
 - Don't invent a blocker or inflate an account count.

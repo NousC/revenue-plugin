@@ -156,8 +156,8 @@ Once backfill is drained:
    and honest team-coverage (this is one seat's slice — drive them to invite the team). **If `record_closed_deals` ran in step 1, the report's Win/Loss section carries the actual win-loss analysis** — why deals
    turned, the recurring objection and top competitor on losses, and *what the ICP now weights
    differently* (the signals `record_closed_deals` returned). Onboarding produces **one artifact** — the
-   win-loss lives as a section inside the Revenue Report, not a second file (the standalone `win-loss`
-   skill emits its own artifact later, on demand). Run the **`revenue-report`** skill — it owns the
+   win-loss lives as section 05 of the Revenue Report — the paths lost deals took, the cause
+   taxonomy, the rep's reason beside the evidence — not a second file. Run the **`revenue-report`** skill — it owns the
    sections, the principles and the voice, and it is the same report the app produces, so
    onboarding and a later "give me the revenue report" can never drift into two documents. On this
    surface **save it to Pages with `save_page`** (`kind: "report"`, `skill: "revenue-report"`, the
