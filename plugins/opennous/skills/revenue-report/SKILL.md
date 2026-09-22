@@ -51,11 +51,13 @@ section it marks false; carry `provenance.caveats` into section 02 verbatim.
 | `customer_success_data` | once | active customers and MRR · at risk with the strongest reason and quote · expansion with what they asked for · churned · how much came from conversations vs CRM fields |
 | `insights` | once, no category | what the market told us: product, positioning, market, buyer — with mention counts and verbatim evidence |
 | `metrics` | `{ measure: 'tasks_created', since_days: 30, group_by: 'source' }` and `{ measure: 'signals_raised', since_days: 30, group_by: 'kind' }` | what OpenNous DID with what it read in the last 30 days |
-| `get_account` | for every account you name | the record behind the name, and the `[n]` citation |
+| `get_account` | ONCE, for the one account you reconstruct in section 10 | the dated events behind the timeline |
 | `whoami` | once | whose company this is, for the title |
 | `save_page` | once, at the end, in a coding agent | files the finished document into Pages (see "Save it to Pages") |
 
-Call the five payload tools at the start, in one go. Then write.
+Call the five payload tools at the start, in one go, then `metrics` twice. **Each tool once** — the
+payloads carry every name, quote and figure the sections need, and re-calling one costs a turn
+the document needs at the end. Ten calls, then `present_document`. Then stop.
 
 ## The document
 
@@ -104,7 +106,7 @@ identified: $1.26M* — then the patterns with the pipeline each accounts for. �
 **overlap and never sum**; say so. Then the recovery set: the OPEN deals carrying several failure
 modes at once, named, with the intervention. ⛔ Never call the total "recoverable revenue".
 Without deal values, run the same patterns on deal count and say dollars need a CRM or Stripe.
-*Data: `revenue_report_data.leakage`, `.recovery`; `get_account` for the names.*
+*Data: `revenue_report_data.leakage`, `.recovery` (the rows carry the names).*
 Blocks: `chart` `bar` of `leakage.patterns` · `table` of the recovery set with `emphasis` on the
 intervention · `prose` on the overlap.
 
@@ -165,7 +167,7 @@ from here: what to ask it each morning, which lists to open, what it watches con
 with **one account reconstructed** — a dated timeline of what happened and what it meant — and a
 short table of how this report was generated: when, over what window, from which sources, how a
 figure is computed, what it refreshes from, and the limits in plain words.
-*Data: every section above; `get_account` for the traced account.* Blocks: `table` · `prose` ·
+*Data: every section above; `get_account` once, for the traced account.* Blocks: `table` · `prose` ·
 `timeline` · `table`.
 
 ## Output
