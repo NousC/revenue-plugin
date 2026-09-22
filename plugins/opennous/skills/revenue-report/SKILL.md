@@ -37,6 +37,13 @@ Rules that hold in every sentence of the document:
 - **Never claim more than the record supports.** Use: the evidence suggests, the observed pattern,
   this may indicate, within the analysed period, no evidence was identified of. Overclaiming works
   directly against the point of the document.
+- **Name the CRM, never call it "the CRM".** `crm_coverage_data.crm` and `win_loss_data.crm`
+  carry the provider's real name — write "HubSpot" everywhere, including source columns and
+  table cells. A document that says "HubSpot" on one row and "CRM" on the next reads as two
+  systems. Only when no CRM is connected does the generic phrase appear.
+- **Never include a column you cannot fill.** Every breakdown carries its own counts
+  (`by_category` has `count` and `accounts`); if a figure does not exist, the column does not
+  exist. A column of dashes reads as missing data.
 - **No product-internal terms.** Never a tool name, a category key, "claims", "the graph" or
   `record_closed_deals`. Write: historical won/lost outcomes, recorded conversations, risk signals.
 - **Translate.** A quote in another language is given in English with the original after it and the
@@ -136,7 +143,11 @@ customers named.
 *Data: `customer_success_data.expansion`; `crm_coverage_data.expansion_unpitched`; `insights`.*
 Blocks: `chart` or `table` of asks by product · `metrics` · `evidence` (ONE quote) · `prose`.
 
-**05 · Why Opportunities Close Won or Lost.** The separators between won and not-won with cohort
+**05 · Why Opportunities Close Won or Lost.** Say which half of the record each finding rests on:
+the stage history, close dates and stated loss reasons come from HubSpot; the separators, the
+ordered sequences and the account timeline combine that history with what was said in the
+recorded conversations. A reader who cannot tell the two apart cannot check either.
+ The separators between won and not-won with cohort
 sizes; the ordered sequence lost opportunities followed, with the won rate beside it; the recorded
 loss reasons against the evidence, and the size of the unclassified bucket. Then **one account
 examined in full**: the dated record of what happened and where the CRM and the conversations
@@ -147,7 +158,8 @@ same pattern.
 Blocks: `path` · `chart` grouped won vs not-won · `table` of causes with `emphasis` on controllable ·
 `timeline` of the single account · `prose`.
 
-**06 · What the CRM Does Not Capture.** The structured signal inside recorded conversations that no
+**06 · What HubSpot Does Not Capture.** (Title it with the provider's name from
+`crm_coverage_data.crm`.) The structured signal inside recorded conversations that no
 CRM field holds: risks, outstanding commitments, unanswered questions, expansion asks, close-date
 history. Then what the system produced from the same record in the last 30 days — tasks created and
 who they are for, signals raised by kind, accounts affected — as the demonstration. State plainly
