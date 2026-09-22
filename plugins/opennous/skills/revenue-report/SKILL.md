@@ -187,6 +187,10 @@ implementation.
 
 ## Output
 
+**Build every section first, then call `present_document` ONCE.** The tool takes the whole
+document in one call and each call replaces the last, so a partial call followed by a complete one
+wastes a step and renders twice. Never present sections 00 to 02 and then "complete" it.
+
 One document via `present_document`, `kind: "report"`. Pass `generated_from` with the real product
 names. Set each section's `kicker` to the formal title ("Customer Health and Retention Risk") and
 its `label` to the insight headline: the quantified finding in one line.
