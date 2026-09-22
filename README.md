@@ -144,16 +144,13 @@ describe the job, and you can also call it directly as `/opennous:<skill>`.
 |---|---|
 | `review-pipeline` | A briefing on the full portfolio: stage spread, deal health, what is slipping and what to re-engage. |
 | `triage-leads` | Scores a list of leads against your ICP in one batch and sorts them into priority tiers. |
-| `revenue-report` | How revenue actually moved over a window, where deals die, and what to change, from your own data. |
-| `win-loss` | Why you win and why you lose, read from what buyers said, cut by segment, competitor and stage. |
+| `revenue-report` | The one report: what happened, what the CRM did not know, where it leaks, why deals are lost as the path they took, who is at risk or asking for more, what the market says, and what to do next. |
 
 **Reporting for your seat and your team**
 
 | Skill | What it does |
 |---|---|
 | `role-report` | The insights that matter to your role, like deal blockers for an AE or churn signals for CS. |
-| `team-report` | For founders and admins, one pipeline across every rep with coverage and ownership per person. |
-| `market-read` | What buyers are telling the whole company, grouped into product, positioning, market and buyer signals. |
 
 **Setup and keeping it current**
 
