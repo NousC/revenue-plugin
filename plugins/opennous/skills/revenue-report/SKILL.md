@@ -95,9 +95,15 @@ Insight headline     the quantified finding     "9 of 34 customers carry an expl
 Opening paragraph    two sentences: what this section examines, on what basis
 Primary visual       one chart, table, path or pair of columns
 Key figures          2 to 4, each with its denominator
-Interpretation       two or three sentences, hedged, separated from the observation
+Interpretation       3 to 5 BULLETS, never a paragraph: one observation each, hedged where
+                     it is a reading. A block of six sentences restating the figures above it
+                     is the single most common way this document stops being read.
 Customer Evidence    one representative quote, sourced
 ```
+
+**Never close a section with a wall of prose.** The last block of a section is a `bullets` block
+of 3 to 5 lines, each one sentence. Use `prose` only for a genuine two-sentence bridge; anything
+longer belongs in bullets, and anything that merely restates the chart above it belongs nowhere.
 
 **Recommendations appear only in section 07.** A section ends with its Business Implication, never
 with a takeaway list, so a reader can act from one page at the end rather than from seven.
