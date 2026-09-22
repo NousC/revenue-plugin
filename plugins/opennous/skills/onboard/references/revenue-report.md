@@ -5,8 +5,8 @@ Six months of activity that lived scattered across their CRM, meetings, and inbo
 have never had. The job of this report is the **"oh — I could never see this before"** moment.
 Revelation first; the actions fall out of it.
 
-**Write it to `reports/revenue-report-<YYYY-MM-DD>.md` in the working directory — NOT under `raw/`.**
-It's a deliverable the user reads, not raw data. Title it `# Revenue Report`. (Never "revenue
+**Save it to Pages with `save_page` (`kind: "report"`, `skill: "revenue-report"`) — NOT to the repo, and
+never under `raw/`.** It's a deliverable the user and the team read, not raw data. Title it `# Revenue Report`. (Never "revenue
 intelligence" — that phrase is retired; it's the *Revenue Report*.)
 
 ## Principles

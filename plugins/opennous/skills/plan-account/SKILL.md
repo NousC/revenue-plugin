@@ -12,6 +12,7 @@ Turn one account's record into a plan the user can act on. You read the graph; y
 - `deals` with `account` — deal health (all four signals, marked Unknown where nothing has been recorded), how likely the deal is to close with the facts moving the odds, and why the account carries its ICP score.
 - `get_context` — pass `intent: "account_review"` (or `meeting_prep`) for a task-shaped read when the account is large.
 - `score` — the live ICP fit + intent if the record doesn't already carry it.
+- `save_page` — file the finished document into Pages (see "Save it to Pages").
 
 ## Workflow
 1. Resolve the account: call `get_account` with the email, domain, or entity id the user gave. If a name is ambiguous, ask which one from the candidates it returns. Then call `deals` with the same account for its health and close odds.
@@ -39,6 +40,16 @@ Lead with a two-line situation summary, then use this shape (adapt to what the r
 1. <the one thing to do next, and why — grounded in a fact>
 2. <supporting move>
 ```
+
+## Save it to Pages
+
+The finished account plan is filed in the workspace's **Pages** on the account it is about, where the team and every
+agent can find it, versioned, with its sources. Not left only in the chat, and not written to the repo:
+raw material (transcripts, emails) stays in git; the finished document lives in Pages.
+
+- **In a coding agent:** call `save_page` once, at the end, with `kind: "plan"`, the `account`, `skill: "plan-account"`, the document as `markdown` with citations as [1], [2], and its `sources` in that same order (each with the `ref` the tools printed). Then give
+  the operator one line: the finding, and the page link it returns.
+- **In the app:** `present_document` with `kind: "plan"` files it for you.
 
 ## Close the loop
 

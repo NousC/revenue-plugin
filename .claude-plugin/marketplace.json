@@ -5,14 +5,14 @@
     "url": "https://opennous.cloud"
   },
   "metadata": {
-    "description": "The revenue plugin for revenue leaders inside coding agents.",
-    "version": "0.12.0"
+    "description": "Give Claude, Codex, and any agent one source of truth about your deals, accounts, and activities.",
+    "version": "0.19.0"
   },
   "plugins": [
     {
       "name": "opennous",
       "source": "./plugins/opennous",
-      "description": "The revenue plugin for revenue leaders inside coding agents — unifies your team's conversations, meetings, and signals into one revenue layer your agent reads from."
+      "description": "Give Claude one source of truth about your deals, accounts, and activities, with skills that brief you before calls, draft follow-ups, forecast deals and review your pipeline."
     }
   ]
 }

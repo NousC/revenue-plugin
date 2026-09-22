@@ -17,7 +17,8 @@ On a fresh or newly-signed-in session: call `whoami` to orient. Then:
 Even when the user never says "Nous". Say the intent; the skill fires. All under /opennous:
 
 Work an ACCOUNT
-- Brief me before a call or meeting          -> `/opennous:brief`
+- Prep me for a specific meeting             -> `/opennous:meeting-prep`
+- Brief me on an account                     -> `/opennous:brief`
 - Plan / strategize one account              -> `/opennous:plan-account`
 - Draft outreach or a follow-up              -> `/opennous:reach-out`
 - Research + file a net-new person/account   -> `/opennous:build-record`
@@ -54,8 +55,9 @@ signal the moment you learn it (the closed loop — do this after every interact
 `whoami` to confirm the seat. Anything larger goes through a skill above.
 
 ## The contract
-Raw stays in the user's git (`raw/`, `briefs/`); Nous holds only structured claims,
-Intel, and insights plus a `source_ref` git pointer — never send a transcript to Nous.
+Raw stays in the user's git (`raw/`); Nous holds only structured claims, Intel, and insights
+plus a `source_ref` git pointer — never send a transcript to Nous. A finished brief, plan or report
+is filed in Pages with `save_page` (read them back with `pages` / `read_page`).
 You observe; the engine resolves identity and derives the claims. Never merge identities
 yourself; always `record` against a precise focus (email / LinkedIn URL / domain /
 entity id), never a bare name.

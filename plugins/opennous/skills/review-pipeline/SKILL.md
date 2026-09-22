@@ -18,6 +18,7 @@ You build the funnel from the graph with a few targeted `query` calls, then dril
   - **Competitive risk** — `query(scope:{ facts:true }, question:"accounts with an active competitor or a live objection")` → semantic fact search over the graph's Intel.
 - `get_account` — drill into an account the review surfaces: deal health, open objections, named competitor, last touch, days quiet.
 - `score` — the ICP fit number for an account when you want to rank re-engagement by fit.
+- `save_page` — file the finished document into Pages (see "Save it to Pages").
 
 ## Workflow
 
@@ -53,6 +54,16 @@ no em dash or colon inside sentences, numerals, a mix of prose and bullets, and 
 (explain the why, not just the number). Use a minimal funnel visual when stages exist; if `by_value`
 is empty, drop the funnel and lead with recency, ICP fit, and competitive risk. The text briefing
 stays the answer; the artifact is the presentation layer. Not on Claude Code? Skip the artifact.
+
+## Save it to Pages
+
+The finished pipeline review is filed in the workspace's **Pages**, where the team and every
+agent can find it, versioned, with its sources. Not left only in the chat, and not written to the repo:
+raw material (transcripts, emails) stays in git; the finished document lives in Pages.
+
+- **In a coding agent:** call `save_page` once, at the end, with `kind: "report"`, a `title` named for the window, the `period` it covers, `generated_from`, `skill: "review-pipeline"`, the document as `markdown` with citations as [1], [2], and its `sources` in that same order (each with the `ref` the tools printed). Then give
+  the operator one line: the finding, and the page link it returns.
+- **In the app:** `present_document` with `kind: "report"` files it for you.
 
 ## Close the loop
 

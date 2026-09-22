@@ -1,67 +1,79 @@
 # Install Nous
 
-Nous is the revenue layer for your coding agent — an identity-resolved, ICP-scored account graph
-you build and query from Claude Code. Install the plugin, sign in, then (optionally) onboard your
-workspace.
+This guide covers Claude Code. For Codex, Cursor, Claude Desktop or any other MCP client, follow
+[Use it with any agent](./README.md#use-it-with-any-agent) in the README.
 
-## 1 — Install the plugin
+In Claude Code this takes about two minutes. You install the plugin, sign in with your browser, and the agent
+sets up your workspace from there.
+
+## 1. Install the plugin
 
 ```bash
-/plugin marketplace add NousC/nous-plugin
+/plugin marketplace add NousC/revenue-plugin
 /plugin install opennous@opennous
 ```
 
-## 2 — Authenticate
-
-The easiest way — browser sign-in, no hunting for a key:
+## 2. Sign in
 
 ```bash
 /opennous:login
 ```
 
-It signs you in and mints a workspace-scoped key saved to `~/.nous/config.json`; the plugin's MCP
-server (`@opennous/mcp`, trimmed to the 9 primitives via `NOUS_SURFACE=plugin`) reads it live — no
-paste, no restart.
+This opens your browser. Sign in, or sign up if you are new, and the command saves a
+workspace-scoped API key to `~/.nous/config.json`. The plugin's MCP server reads that file on every
+call, so there is nothing to paste.
 
-**Manual alternative:** copy a key from **https://app.opennous.cloud/connect/api-keys**, run
-`/plugin` → **opennous → configure**, and paste it into **"Nous API key"** (stored encrypted).
-
-Then apply it:
+Then reload the plugin:
 
 ```bash
 /reload-plugins
 ```
 
-If the tools still return `401 invalid_api_key` right after setting the key, fully quit and relaunch
-Claude Code — a live MCP connection can cache the old header.
+**If you would rather paste a key,** copy one from
+[app.opennous.cloud/connect/api-keys](https://app.opennous.cloud/connect/api-keys), run `/plugin`,
+choose **opennous → configure**, and paste it into **Nous API key**. Claude Code stores it
+encrypted.
 
-## 3 — The agent takes it from here (onboarding starts automatically)
+## 3. Let onboarding run
 
-That's your last manual step. The moment you're signed in, the agent **orients** (`whoami` + a
-quick look at your graph) and, if your workspace is empty, **starts onboarding on its own** — it
-detects the revenue tools you already have connected (Fireflies, Gmail, Calendar, HubSpot/Attio,
-LinkedIn), backfills recent history onto the graph **on your own tokens**, and builds your pipeline
-report. Extraction runs here in your agent — nothing is connected in our UI.
+Signing in is your last manual step. The agent checks who you are and what is in your workspace, and
+if the workspace is empty it starts onboarding on its own. It will:
 
-You don't have to type anything: `/opennous:login` hands straight to onboarding. (You *can* run
-**`/opennous:onboard`** by hand, or say *"onboard my workspace,"* if you skipped it.) Once your
-history is in, the day-to-day is **`/opennous:focus`**.
+1. Find the revenue tools you already have connected in Claude Code, such as Fireflies, Gmail,
+   Google Calendar, HubSpot or Attio, and LinkedIn, and tell you if an important one is missing.
+2. Import the last 6 months of history, in order, on your own tokens. You can stop it and run it
+   again without creating duplicates.
+3. Build your ICP from the deals you have already won and lost. If nothing has closed yet, it writes
+   a starting ICP and labels it as a hypothesis.
+4. Finish with a revenue report on how your pipeline moved and where it leaks.
 
-## What you get
+If you skipped it, run `/opennous:onboard` or say *"onboard my workspace"*. From then on, start each
+day with *"what should I focus on today?"*
 
-**10 primitives:** `whoami` · `get_context` · `get_account` · `query` · `score` · `deals` · `record` ·
-`record_insight` · `set_icp` · `record_closed_deals`
+## Check that it works
 
-**Skills (20):**
-- Setup — `onboard` · `status` · `sync` · `backfill`
-- Daily — `focus` (your morning worklist) · `whats-changed` · `ask-nous`
-- Accounts & deals — `build-record` · `plan-account` · `brief` · `reach-out` · `map-committee` ·
-  `objection-prep`
-- Pipeline & reporting — `review-pipeline` · `triage-leads` · `forecast` · `revenue-report` (the
-  one report: it absorbed win-loss, market-read and team-report) · `role-report` (per seat)
+Ask *"who am I on Nous?"*. The agent calls `whoami` and answers with your name, your workspace and
+your role. You can also run `/opennous:status` for a fuller check.
 
-**How it works:** you (this agent) extract facts and insights from calls/emails on your own tokens;
-Nous does the identity resolution, ICP scoring, and memory — the part that compounds. Raw data stays
-in your git; only the structured graph enters Nous.
+## Troubleshooting
 
-Need help? → https://docs.opennous.cloud/mcp/introduction
+**The tools return `401 invalid_api_key` right after you signed in.** Fully quit Claude Code and
+open it again. A live MCP connection can keep the old key until it restarts.
+
+**`/opennous:login` timed out or was denied.** Run it again. Each run mints a fresh key.
+
+**The agent answers account questions from general knowledge.** Run `/reload-plugins`, then start a
+new session. The session-start hook is what tells the agent to use Nous first.
+
+## Turn on automations (optional)
+
+Run `/opennous:automate` to have the plugin work your calls without you. After every recorded call
+it drafts the follow-up and writes a coaching review, and every Sunday it writes a coaching report.
+It installs GitHub Actions in your repo, which need `NOUS_API_KEY` plus either a
+`CLAUDE_CODE_OAUTH_TOKEN` (from `claude setup-token`, billed to your Claude subscription) or an
+`ANTHROPIC_API_KEY` as repo secrets.
+
+## Need help?
+
+Docs are at [docs.opennous.cloud](https://docs.opennous.cloud/mcp/introduction). For anything else,
+open an issue on this repo.

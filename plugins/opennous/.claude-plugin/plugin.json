@@ -1,14 +1,14 @@
 {
   "name": "opennous",
-  "version": "0.15.0",
-  "description": "The revenue plugin for revenue leaders inside coding agents — unifies your team's conversations, meetings, and signals into one revenue layer your agent reads from.",
+  "version": "0.19.0",
+  "description": "Give Claude one source of truth about your deals, accounts, and activities, with skills that brief you before calls, draft follow-ups, forecast deals and review your pipeline.",
   "author": {
     "name": "OpenNous",
     "url": "https://opennous.cloud"
   },
   "homepage": "https://opennous.cloud",
-  "repository": "https://github.com/NousC/nous-plugin",
-  "keywords": ["revenue", "crm", "sales", "gtm", "icp", "mcp", "context-graph"],
+  "repository": "https://github.com/NousC/revenue-plugin",
+  "keywords": ["revenue", "sales", "pipeline", "crm", "forecast", "icp", "gtm", "claude-code", "mcp"],
   "userConfig": {
     "api_key": {
       "type": "string",

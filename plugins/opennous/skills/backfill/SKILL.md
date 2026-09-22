@@ -29,7 +29,10 @@ the report which stages you skipped. **Never invent a connector that isn't prese
 and note the consequence (e.g. "no CRM connected, so deal stages are unknown without Stripe").
 
 - **Stage 0 · Ask: is there a CRM?** The answer shapes the run (stage data now, or Stripe later).
-- **Stage 1 · CRM** (HubSpot / Attio / Pipedrive / Salesforce) — *creates the backbone.* Import
+- **Stage 1 · CRM** (HubSpot / Attio / Pipedrive / Salesforce) — *creates the backbone.* **If the app's
+  CRM sync already imported it** (connected in Settings → Company sources; `query` shows accounts with
+  `deal.stage`), **skip this stage** — the app owns the CRM backbone, imports it for free, and a CRM of
+  tens of thousands of rows must never be pulled through this session. Otherwise import
   companies→accounts, contacts→people, deals→`deal.stage`/`deal.value`, and owners. The only source
   besides Stripe that carries **pipeline stage**. Everything downstream matches into these accounts.
 - **Stage 2 · Outbound** (Instantly / HeyReach / Smartlead / Lemlist / EmailBison) — *creates from
@@ -58,7 +61,9 @@ and note the consequence (e.g. "no CRM connected, so deal stages are unknown wit
 **Then the final pass — enrich, train on outcomes, then score** (this is what fixes "not ICP'd, not
 enriched"): first enrich firmographics so accounts are *scoreable* (domain → industry / size); then,
 **if the CRM/Stripe stages produced closed deals, train the ICP on them** — pull the `closed_won` and
-`closed_lost` cohorts with `query` and feed their domains to **`record_closed_deals`**, which runs
+`closed_lost` cohorts **closed in the last 12 months** (a ruling: recent outcomes describe today's
+buyer, and Nous reads one website per domain, so the window also bounds the cost) with `query` and feed
+their domains to **`record_closed_deals`**, which runs
 contrastive lift and re-scores open accounts (admin/founder only, and only when closed deals exist —
 this is what upgrades the ICP from the `set_icp` hypothesis to an outcome-graded model); then `score`
 every account against that ICP. Score LAST — it needs both an ICP model and enriched features. If no
@@ -86,6 +91,9 @@ For each connected source, in the order above, repeatedly:
      each carrying its verbatim `quote` + `speaker` in the value (the evidence shown under the fact —
      copy the real line, never compose one; empty is fine when there is nothing quotable)
    - extract insights → `record_insight`
+   - **meetings from the last 30 days only:** if it is a sales call, write the call review →
+     `record` a `call_review` (`../sync/references/call-review.md`). Older meetings get facts and
+     insights but no review — a ruling: history reviews matter less than current ones
    - write a one-line brief → `briefs/<account>/<date>-<id>.md` (git only)
 4. **Retry, then quarantine.** Transient error (connection closed, timeout, 5xx) → retry up to 3
    times; still failing → add the id to a `quarantine` list and continue. Never let one item stall the run.
@@ -134,6 +142,10 @@ tiny 1–3-item themes — a thin backfill may not populate reporting until enou
 - **Raw → git, structure → Nous.** Never send a transcript or a full brief to Nous.
 - **Never invent.** A thin item may yield only its interaction and no facts — that's correct.
 - **You never merge/resolve identities.** Observe against a precise `focus`; the engine resolves.
-- **Score last, train before it.** Enrich firmographics → train the ICP on closed deals when there are
-  any (`record_closed_deals`, admin/founder) → `score` against the resulting model. Never score before
-  an ICP and enriched features both exist.
+- **Score last, train before it.** Enrich firmographics → train the ICP on closed deals **from the last
+  12 months** when there are any (`record_closed_deals`, admin/founder) → `score` against the resulting
+  model. Never score before an ICP and enriched features both exist.
+- **The CRM comes from the app.** When the app's CRM sync has imported the CRM, this skill reads only
+  the conversations (meetings, email, outbound) and never re-imports CRM rows.
+- **Call reviews: last 30 days of meetings, sales calls only.** They land as the same scorecards and
+  Call pages the app writes.

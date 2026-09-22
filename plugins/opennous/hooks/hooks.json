@@ -1,5 +1,5 @@
 {
-  "description": "The revenue plugin for revenue leaders inside coding agents — SessionStart routing so the agent reaches for the engineered Account Record first and onboards new users, plus PostToolUse confirmation so a recommendation the agent acted on is graded against what actually happened. Neither hook edits the user's files.",
+  "description": "Two hooks for the Nous plugin. SessionStart tells the agent to use Nous for revenue work and appends what this workspace has learned. PostToolUse reports a send (recipient and a hash of the body) so a recommendation the agent acted on is graded against what actually happened. Neither hook edits the user's files.",
   "hooks": {
     "SessionStart": [
       {

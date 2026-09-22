@@ -160,8 +160,9 @@ Once backfill is drained:
    taxonomy, the rep's reason beside the evidence — not a second file. Run the **`revenue-report`** skill — it owns the
    sections, the principles and the voice, and it is the same report the app produces, so
    onboarding and a later "give me the revenue report" can never drift into two documents. On this
-   surface write its output to **`reports/revenue-report-<YYYY-MM-DD>.md`** (in the working dir,
-   NOT under `raw/`); the full spec it follows is **`references/revenue-report.md`**. Every claim sourced; honest about what's missing; pipeline $ only
+   surface **save it to Pages with `save_page`** (`kind: "report"`, `skill: "revenue-report"`, the
+   `period` the backfill covered, `generated_from` naming the connected tools) — not to the repo; the
+   full spec it follows is **`references/revenue-report.md`**. Every claim sourced; honest about what's missing; pipeline $ only
    if a CRM/Stripe fed it (else make "no tracked outcomes" a finding, and note the ICP stays a hypothesis
    until deals close).
 4. **Render the branded artifact (Claude Code only).** After the markdown is written, render a branded
@@ -169,16 +170,16 @@ Once backfill is drained:
    Copy **`../../references/artifact-template.html`** and swap in the report's real content; follow
    **`../../references/artifact-design.md`** exactly (the OpenNous look, "Generated for {name},
    {company}", footnote source citations linking to the raw in their git, sentence case, no em dash or
-   colon in sentences, numerals, prose + bullets, rule number one = make it valuable). The markdown in
-   `reports/` stays the source of truth; the artifact is the presentation layer. Not on Claude Code?
+   colon in sentences, numerals, prose + bullets, rule number one = make it valuable). The page in Pages
+   stays the source of truth; the artifact is the presentation layer. Not on Claude Code?
    Skip the artifact and hand over the markdown.
 5. Show the user the **executive summary** inline (a few sentences that land the "oh") + the report
    path and the artifact link. Don't paste the whole report — the summary plus "full Revenue Report at
    <path>" and the shareable artifact.
 
 **Exit:** the ICP came from closed deals where there were any (`record_closed_deals`, admin/founder)
-and is labelled a hypothesis where there were none, accounts are scored, the Revenue Report is written
-to `reports/` with its Win/Loss section, its branded artifact is published (on Claude Code), and the
+and is labelled a hypothesis where there were none, accounts are scored, the Revenue Report is saved
+to Pages with its Win/Loss section, its branded artifact is published (on Claude Code), and the
 executive summary is shown.
 
 ## Phase E · Handoff + one optional last step

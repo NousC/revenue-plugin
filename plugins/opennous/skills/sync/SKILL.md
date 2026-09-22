@@ -2,7 +2,8 @@
 name: sync
 description: >
   Processes a call transcript or email into the Nous graph — extracting the facts,
-  Intel, buying signals, and insights, and filing them. Use when a meeting just finished, a
+  Intel, buying signals, and insights, filing them, and (for a sales call) writing the call review
+  that becomes its scorecard and Call page. Use when a meeting just finished, a
   new email/transcript is available, or the user says "file this call", "process
   this transcript", "catch me up on this meeting". You run the extraction yourself
   (on this agent's tokens); Nous resolves identities and scores. For importing MONTHS
@@ -84,6 +85,13 @@ attribution rule. Produce the insights array (product/positioning/market/buyer).
 
 **7 — File the insights.**
 `record_insight(insights=[...], source_label:'<account> — <call type>', occurred_at:'<ISO>')`.
+
+**7b — Review the call (sales meetings only).**
+For a meeting with a full transcript and an external attendee, follow `references/call-review.md`:
+classify it, and if it is a **sales** call, score the rubric (1–10 per dimension, team graded, talk
+time measured), write the summary / verdict / went well / improve, and send it with ONE `record` call
+as a `call_review` observation. Nous stores the scorecard (Coaching) and files the **Call page** on
+the account — the same page the app writes. Skip emails, internal calls and non-sales calls.
 
 **8 — Write a one-line brief to git** at `briefs/<account>/<date>-<id>.md` (2–3 sentences) for your
 own future reference. Do NOT send it to Nous.

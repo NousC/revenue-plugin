@@ -10,6 +10,7 @@ The objections on THIS deal and how to answer them — pulled from what's actual
 ## Tools
 - `get_account` — the recorded objection Intel (category `objection`, with `status` open/resolved and `hardness` hard/soft), plus competitors in play and their stance.
 - `get_context` — pass `intent: "account_review"` to pull the deal state and our relevant positioning when the account record is large.
+- `save_page` — file the finished document into Pages (see "Save it to Pages").
 
 ## Workflow
 1. **Resolve the account** and `get_account`; collect the objection Intel, competitors, and deal stage.
@@ -37,6 +38,16 @@ the user asks for the literal line to say — "give me the words", "how do I phr
 is spoken by them to a prospect, so it is drafted in THEIR voice, per the voice contract in
 `../../references/language.md` §3. The counter, the ordering, and the risk framing around it stay in
 register. Only the quoted line changes voice.
+
+## Save it to Pages
+
+The finished objection prep is filed in the workspace's **Pages** on the account it is about, where the team and every
+agent can find it, versioned, with its sources. Not left only in the chat, and not written to the repo:
+raw material (transcripts, emails) stays in git; the finished document lives in Pages.
+
+- **In a coding agent:** call `save_page` once, at the end, with `kind: "objection_prep"`, the `account`, `skill: "objection-prep"`, the document as `markdown` with citations as [1], [2], and its `sources` in that same order (each with the `ref` the tools printed). Then give
+  the operator one line: the finding, and the page link it returns.
+- **In the app:** `save_note` with `category: "objection_prep"` files it for you.
 
 ## Close the loop
 

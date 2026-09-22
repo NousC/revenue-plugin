@@ -11,6 +11,7 @@ Give the caller the insights that matter to *their seat*, reframed for their rol
 - `whoami` — the caller's identity, `scope`, and **GTM role(s)** (plural). This is what scopes the report. If it returns no role, ask which seat to report for (Account Executive · SDR/BDR · Customer Success · Product & Engineering · RevOps · Marketing · Sales), or default to `account_executive`.
 - `query` — read the role-routed insights: `scope: { reporting: "role", role: "<role>" }`. The server routes each insight to the roles it matters to and reframes it (an objection is a "Deal blocker" to an AE, an "Early objection" to an SDR, a "Feature request" to Engineering) and returns handlers (objections/deal-blockers, with account counts) plus the themes relevant to that role. Founder scope returns all lenses.
 - `get_account` — expand one account behind an insight when the caller drills in.
+- `save_page` — file the finished document into Pages (see "Save it to Pages").
 
 ## Workflow
 1. **Identify the seat.** `whoami` → the caller's role(s). Report for each role they hold; if founder/admin, offer any lens.
@@ -30,6 +31,16 @@ Give the caller the insights that matter to *their seat*, reframed for their rol
 
 <if multiple roles: a second section per role, reframed for that seat>
 ```
+
+## Save it to Pages
+
+The finished role report is filed in the workspace's **Pages**, where the team and every
+agent can find it, versioned, with its sources. Not left only in the chat, and not written to the repo:
+raw material (transcripts, emails) stays in git; the finished document lives in Pages.
+
+- **In a coding agent:** call `save_page` once, at the end, with `kind: "report"`, a `title` named for the window, the `period` it covers, `generated_from`, `skill: "role-report"`, the document as `markdown` with citations as [1], [2], and its `sources` in that same order (each with the `ref` the tools printed). Then give
+  the operator one line: the finding, and the page link it returns.
+- **In the app:** `present_document` with `kind: "report"` files it for you.
 
 ## Rules
 - **Attribute inline, don't quote.** Blockers carry account counts; a quote is for the drill-in.

@@ -1,6 +1,6 @@
 ---
 name: brief
-description: Briefs you on an account — shaped by YOUR job. Opens with the at-a-glance read (stage, last touch, last meeting, who's involved, the decision maker), then: an SDR gets why this account, who to contact and what to say; an AE gets the deal, the committee, the risks and what moves it; CS gets adoption, health, commitments and the renewal; a founder or head of sales reading someone else's account gets whether it's real, whether it's moving, and where to help. Use when the user says "brief me", "prep me for my meeting with", "account brief for", "what do I need to know before I talk to", "who am I meeting with", or names an upcoming call. This is the working read on one account; for the full strategic plan use `plan-account`.
+description: Briefs you on an account — shaped by YOUR job. Opens with the at-a-glance read (stage, last touch, last meeting, who's involved, the decision maker), then: an SDR gets why this account, who to contact and what to say; an AE gets the deal, the committee, the risks and what moves it; CS gets adoption, health, commitments and the renewal; a founder or head of sales reading someone else's account gets whether it's real, whether it's moving, and where to help. Use when the user says "brief me", "brief me on", "account brief for", "catch me up on", or "what do I need to know about" an account. This is the working read on one account; for a specific upcoming meeting ("prep me for my call with", "meeting prep") use `meeting-prep`, and for the full strategic plan use `plan-account`.
 ---
 
 # Brief
@@ -57,6 +57,7 @@ open with a question you could have answered from `whoami` or the stage.
 - `get_account` — the full record when the brief needs a thread `get_context` didn't surface: a
   specific objection, a commitment made two calls ago, the buying committee.
 - `score` — ICP fit and intent, where the brief turns on whether this account is worth the time.
+- `save_page` — file the finished document into Pages (see "Save it to Pages").
 
 ## The shapes
 
@@ -159,6 +160,16 @@ work this account today. They're deciding where to spend an hour of their own ti
   economic buyer. Name the specific intervention, or say plainly that it doesn't need one.
 
 Never turn this into a rep scorecard. It's a read on a deal, not on a person.
+
+## Save it to Pages
+
+The finished brief is filed in the workspace's **Pages** on the account it is about, where the team and every
+agent can find it, versioned, with its sources. Not left only in the chat, and not written to the repo:
+raw material (transcripts, emails) stays in git; the finished document lives in Pages.
+
+- **In a coding agent:** call `save_page` once, at the end, with `kind: "brief"`, the `account`, `skill: "brief"`, the document as `markdown` with citations as [1], [2], and its `sources` in that same order (each with the `ref` the tools printed). Then give
+  the operator one line: the finding, and the page link it returns.
+- **In the app:** `present_brief` files it for you.
 
 ## Close the loop
 

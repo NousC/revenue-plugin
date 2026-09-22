@@ -108,4 +108,4 @@ insight. Keep them few and quiet — a report is not a dashboard.
 
 ## Publishing
 Render the template filled with the real content (self-contained), then publish it as the artifact.
-The markdown report stays in `reports/` as the source of truth; the artifact is the shareable layer.
+The document saved to Pages (`save_page`) is the source of truth; the artifact is the shareable layer.

@@ -53,6 +53,7 @@ section it marks false; carry `provenance.caveats` into section 02 verbatim.
 | `metrics` | `{ measure: 'tasks_created', since_days: 30, group_by: 'source' }` and `{ measure: 'signals_raised', since_days: 30, group_by: 'kind' }` | what OpenNous DID with what it read in the last 30 days |
 | `get_account` | for every account you name | the record behind the name, and the `[n]` citation |
 | `whoami` | once | whose company this is, for the title |
+| `save_page` | once, at the end, in a coding agent | files the finished document into Pages (see "Save it to Pages") |
 
 Call the five payload tools at the start, in one go. Then write.
 
@@ -173,6 +174,18 @@ Hand it over as ONE document with `present_document`, titled **"Revenue Report â
 from `whoami` and the window it covers. Never the word demo. Pass `generated_from` with the real
 product names behind the sources ("HubSpot", "Gmail", "Fellow"), never internal keys. Then one line
 in the chat: the finding you would lead with if you had ten seconds, and what you would do about it.
+
+## Save it to Pages
+
+The finished report is filed in the workspace's **Pages**, where the team and every agent can find
+it, versioned, with its sources. Not left only in the chat, and not written to the repo: raw
+material (transcripts, emails) stays in git; the finished document lives in Pages.
+
+- **In a coding agent:** call `save_page` once, at the end, with `kind: "report"`, a `title` named
+  for the window, the `period` it covers, `generated_from`, `skill: "revenue-report"`, the document
+  as `markdown` with citations as [1], [2], and its `sources` in that same order (each with the
+  `ref` the tools printed). Then give the operator one line: the finding, and the page link.
+- **In the app:** `present_document` files it as a page on its own.
 
 ## Rules
 

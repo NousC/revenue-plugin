@@ -30,6 +30,13 @@ guard in the sync skill). Skip a free-email domain (gmail.com, outlook.com, …)
 
 Everything below (the Intel) is recorded IN ADDITION to these attributes, not instead of them.
 
+## Anchor: what WE sell (read once per run)
+
+`get_context` on any account returns a **YOUR CONTEXT (ICP / product / positioning)** block. Read it
+once before extracting: it is what WE sell, in our own words. The `competitor` category is judged
+against it: a competitor is a product that does the job described there, and nothing else. The app's
+extractor gets the same anchor from the workspace's Positioning document, so both land the same facts.
+
 ## What to record
 
 For each external attendee, record facts drawn from what THEY reveal about themselves, their
@@ -61,7 +68,7 @@ critique, or a reason-for-reaching-out that they genuinely voice IS a fact and m
 
 ## Categories — tag each fact with exactly one `category`
 
-- `status_quo` — how they work today (tools, vendor, process, stack). e.g. "Acme runs outbound on Apollo and Instantly today."
+- `status_quo` — how they work today (tools, vendor, process, stack). **Every tool in their stack that does something OTHER than what we sell belongs here** — their CRM, call recorder, meeting-notes or agenda tool, data vendor, automation tool — including one they plan to replace. e.g. "Acme runs outbound on Apollo and Instantly today."
 - `goal` — an initiative, priority, or outcome they're chasing. e.g. "Wants to consolidate enrichment vendors before end of Q3."
 - `pain` — a stated problem/frustration with the concrete reason. e.g. "Clay's list-building is bottlenecked by manual work."
 - `objection` — a concern/pushback/challenge to us (price, security, timing, switching cost, competitor loyalty, "how are you different"). e.g. "Questioned how we differ from Fireflies that already syncs notes to the CRM."
@@ -70,7 +77,7 @@ critique, or a reason-for-reaching-out that they genuinely voice IS a fact and m
 - `timeline` — a buying/project timeline tied to a business reason (never a meeting time). e.g. "Evaluating vendors this quarter, driven by a budget review."
 - `buying_signal` — explicit deal-progression: asked for the agreement/contract, accepted pricing, verbal commit, asked to start/onboard. e.g. "Asked us to send the agreement and confirmed they'll prepay $2.5k to start."
 - `preference` — how to work with them (channel, cadence, style, format). e.g. "Strongly prefers tools with a native API over no-code builders."
-- `competitor` — a competing tool they use or evaluated, why, how loyal. e.g. "Currently on Clay and frustrated with its pricing at scale."
+- `competitor` — a product that does **the job WE sell** (per YOUR CONTEXT): an alternative to us they use, are evaluating, compared us with, or tried and dropped — why, and how loyal they are. **Never a tool in their stack that does something else** (that is `status_quo`). A person on the call explicitly calling something our competitor counts. e.g. "Evaluating Gong forecasting alongside us, but says its price rules it out."
 - `discovery` — how the relationship began (content/channel/post/referral/event) and why they reached out; always from THEIR side. e.g. "Priya found us through our YouTube video on open-source GTM and reached out on LinkedIn."
 - `relationship` — a durable connection (reports-to, referred-by, mutual connection, community, or an offer to introduce). e.g. "Offered to introduce us to seed- and YC-stage founders in his network."
 - `general` — durable, decision-relevant context fitting none of the above. e.g. "Plans to hire 2 SDRs once the team passes $50k MRR."
@@ -82,6 +89,10 @@ critique, or a reason-for-reaching-out that they genuinely voice IS a fact and m
 - **Pick the MOST SPECIFIC category. `general` is a LAST RESORT**, not a default. Before you ever
   write `general`, check the fact against each of these first — they are the ones most often missed:
   - Do they describe how they work today, their current tool/vendor/process? → **`status_quo`**
+  - Does a tool they mention do what WE sell, or is it just part of their stack? Only the first is
+    **`competitor`**. Their CRM, call recorder, notes/agenda tool, data vendor = **`status_quo`**,
+    even when they dislike it or plan to switch off it. (We learned this the hard way: Fellow,
+    JustCall and ZoomInfo were filed as competitors of a revenue-intelligence product.)
   - Is it a problem, friction, or frustration (with the why)? → **`pain`**
   - Is it something they want to achieve / an initiative? → **`goal`**
   - Is it how they like to be worked (channel, cadence, format, API-vs-nocode)? → **`preference`**
@@ -106,7 +117,7 @@ critique, or a reason-for-reaching-out that they genuinely voice IS a fact and m
   use the vendor name ("Pearl Lemon"); for an objection name it ("Outbound intent doubts"); for a
   pain/goal name it ("Stale Apollo data").
 - Context tags (only for the category that carries them):
-  - `competitor`: `entity` = the vendor name; `stance` ∈ evaluating | incumbent | past_failure | mentioned.
+  - `competitor`: `entity` = the vendor name; `stance` ∈ evaluating (a live alternative they're weighing against us) | incumbent (they use it FOR THE JOB WE SELL) | past_failure (tried it for that job and it failed — an opening) | mentioned.
   - `objection`: `status` ∈ open | resolved | addressed; `hardness` ∈ hard | soft.
 
 ### `quote` and `speaker` — the evidence. Every fact carries them.

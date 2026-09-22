@@ -31,7 +31,12 @@ one, Stripe (Stage 5) becomes the way to learn what's actually closed.
 
 ## Stage 1 — CRM: the account backbone (creates accounts)
 
-If a CRM is connected, import it first. It is the only source besides Stripe that carries **deal
+**If the app's CRM sync has already imported the CRM, skip this stage.** The app imports companies,
+contacts, deals, owners and subscriptions for free; pulling tens of thousands of CRM rows through a
+Claude Code session costs hours and usage limits for no gain. Check with `query` (accounts carrying
+`deal.stage`). Everything below still matches into those accounts.
+
+Otherwise, if a CRM is connected, import it first. It is the only source besides Stripe that carries **deal
 stage**, and it gives you the canonical account set + contacts + owners in one structured pass.
 - Import companies → accounts, contacts → people (keyed by email/domain), deals → `deal.stage`,
   `deal.value`, and the relationship owner.
@@ -60,7 +65,10 @@ Two connectors, one block:
   only when it's clearly a real external meeting.
 - **Match first, create second.** An attendee already in the graph (from CRM / outbound) must resolve
   to that record.
-- **Populates:** claims, intel, insights, accurate meeting timeline.
+- **Call reviews:** for meetings from the **last 30 days** that are sales calls, write the review and
+  `record` it as a `call_review` (`../../sync/references/call-review.md`) — it becomes the scorecard and
+  the Call page, exactly as the app writes them. Older meetings: facts and insights only.
+- **Populates:** claims, intel, insights, accurate meeting timeline, call scorecards + Call pages (last 30 days).
 
 ## Stage 4 — Gmail: enrich-only, NEVER create
 
@@ -117,7 +125,7 @@ Ingestion order alone never scores accounts. After the stages, run one closing p
 2. **Train the ICP on real closed deals — if there are any (admin/founder only).** Stages 1 and 5
    are the point where `closed_won` and `closed_lost` land on the graph. Now use them: pull the two
    cohorts with `query` (`scope.property:"stage"`, `return:"entities"` — the accounts at `closed_won`
-   and at `closed_lost`) and feed their domains to the **`record_closed_deals`** tool (carry
+   and at `closed_lost`, **closed in the last 12 months**) and feed their domains to the **`record_closed_deals`** tool (carry
    `deal.value` → `amount` and the close date → `closed_at` where the CRM/Stripe records have them).
    The engine runs contrastive lift (the signals that separate wins from losses), links the contacts
    already at each company, resolves their open predictions with the real outcome, and re-scores every

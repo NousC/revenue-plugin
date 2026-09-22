@@ -10,6 +10,10 @@ Before extracting, load our own company context (our product, positioning, ICP/b
 about US as described there. This anchor is what stops you filing the prospect's OWN business facts
 (their buyers, their market, their pricing) as if they were ours.
 
+**No context, no insights.** If you cannot load who we are (no ICP/positioning in YOUR CONTEXT),
+skip insight extraction for the item and say so. The app skips it the same way, because mining a call
+without the anchor files the prospect's own business as ours.
+
 ## Who is who
 The EXTERNAL attendees (the prospect/customer side) are who we learn from. Everyone on our own side
 is US. Judge from context if unlabeled.

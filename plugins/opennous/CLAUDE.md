@@ -54,9 +54,20 @@ knowledge — the truth about accounts lives in the graph, through the Nous tool
 - **Reach for Nous first.** Don't answer account questions from memory when a tool holds the truth.
 - **Record after you learn.** Whenever a call/email/turn teaches you something durable, `record` it
   (and `record_insight` for learnings about us) so the next session starts ahead.
-- **Raw stays in git; Nous holds structure.** Full transcripts and prose briefs live in this repo
-  (`raw/`, `briefs/`). Nous stores only structured claims + Intel + insights, plus a `source_ref`
-  git pointer. Never send a transcript to Nous.
+- **Raw stays in git; finished documents live in Pages.** Full transcripts and emails live in this
+  repo (`raw/`), and Nous stores only structured claims + Intel + insights plus a `source_ref` git
+  pointer: never send a transcript to Nous. A FINISHED document you write for the operator (an
+  account brief, a plan, a report, objection prep) is filed in the workspace's Pages with
+  `save_page`, not written to the repo, so the team and every agent can find it.
+- **Read the standard before you argue with a score.** `query({scope:{foundation:'icp'}})` returns
+  the ICP as it is written — the buyer definition and the scoring rules — not another number
+  derived from it. Do that before triaging a list, planning an account, or telling someone why a
+  lead scored what it did. A judgement you cannot explain is one they have to take on faith.
+- **Write down how they want things, the moment they say it.** A preference is about shape:
+  `record` with `property:'preference'`, `value:{statement:'write shorter than feels finished',
+  scope:'person', applies_to:'email_send'}`. A prohibition is stronger and has its own property —
+  `property:'constraint'` — because we stop generating those entirely rather than remembering not
+  to. `scope:'workspace'` only when it is how the COMPANY works, not how one person likes things.
 - **Close the loop on your own advice.** When you recommend an action, write it down with
   `record` BEFORE it happens — `property:'decision.proposed'` with a unique `decision_id`, the
   `recipient`, a `rationale` (WHY you think it works, kept apart from WHAT you are doing), and
@@ -65,6 +76,18 @@ knowledge — the truth about accounts lives in the graph, through the Nous tool
   same `decision_id` on the interaction you record when it fires. Without it a send is an orphan
   nobody can learn from; without the rationale and basis we learn whether the advice worked but
   never which evidence was worth acting on. It is bookkeeping — never narrate it to the user.
+- **When you can see the final text, send it.** A verdict of `decision.edited` or
+  `decision.accepted` carries `drafted_body` and `sent_body` whenever you hold both — a
+  rewrite in the conversation, a pasted-back version, a revision you produced on request.
+  Without them the verdict is stored as unverified and counts toward nothing, so "they edited
+  it" with no text is the same as saying nothing.
+- **Say what a correction MEANT.** You are the only one who heard it. When the human rewrites,
+  refuses or reshapes something, the verdict carries an `interpretation`, a `correction_kind`
+  (rule / structure / claim / constraint / **none**) and a `correction_scope` (once / person /
+  workspace / product). `none` and `once` are the right answers most of the time — a typo or a
+  detail only they knew teaches nothing, and recording it as a preference crowds out the real
+  signal. When the scope is genuinely unclear, ask one short question: *just this one, or
+  always?*
   Mechanic: `${CLAUDE_PLUGIN_ROOT}/references/decision-loop.md`.
 - **Idempotency.** When importing history, set `observed_at` (the real date) and a distinct
   `external_id` per observation (`"<itemId>:<property>"`) so re-runs never duplicate.
