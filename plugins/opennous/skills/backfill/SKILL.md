@@ -4,7 +4,7 @@ description: >
   Imports months of history into the Nous graph in bulk — in a deliberate SOURCE ORDER (CRM →
   outbound → meetings → Gmail → Stripe), then enriches, trains the ICP on any closed deals, and
   ICP-scores every account. Use when
-  setting up a workspace, or when the user says "backfill my history", "import the last 6 months",
+  importing a source the app cannot connect (a CSV, a tool with no integration), or when the user says "import this file", "import the last 3 months",
   "pull all my past calls". Runs on THIS agent's tokens. Resumable and idempotent — safe to stop
   and re-run. For a single just-finished call, use sync instead.
 ---
@@ -73,7 +73,7 @@ ICP exists, say so and skip; don't block the report. Full sequence: `references/
 
 For each connected source, in the order above, repeatedly:
 1. **Watermark** — per source, find where a prior run stopped (`~/.nous/backfill.json`, or ask Nous).
-   Resume from there; first run starts at the window's oldest edge. **Window defaults to 6 months.**
+   Resume from there; first run starts at the window's oldest edge. **Window defaults to 3 months** — the server backfill's window; history from a connected tool is the server's job, not this skill's.
 2. **Pull the next batch** (20–50 items) from the watermark forward, within the window.
 3. **For each item, run the `sync` per-item procedure** — including step-2 attendee resolution, so
    every fact lands on the RIGHT person (by email), never piled on one host entity:
@@ -104,7 +104,7 @@ At the end of each stage, report its quarantine list so a re-run can retry just 
 
 ## Cost & size discipline
 - This runs on the user's tokens; a deep history can be thousands of items. Before a large run, give a
-  rough size ("~1,200 meetings over 6 months") so they know the scale.
+  rough size ("~600 meetings over 3 months") so they know the scale.
 - Cap the work per invocation if it's very large; checkpoint and tell the user they can **re-run to
   continue** — every write is idempotent, so resuming never double-files.
 

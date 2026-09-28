@@ -2,8 +2,8 @@
 name: onboard
 description: >
   Onboards a new Nous workspace end-to-end inside the coding agent — detecting the
-  revenue tools connected here, filling gaps, backfilling the last 6 months onto the
-  graph (on this agent's tokens), and ending with a pipeline report. Use the FIRST time
+  revenue tools connected here, filling gaps, starting the server-side backfill of the
+  last 3 months, and ending with a pipeline report. Use the FIRST time
   a user sets up Nous, or when they say "onboard me", "set up my workspace", "build my
   accounts", "import my history", or ask how to get started. Not for day-to-day work
   once set up — use sync, plan-account, or review-pipeline instead.
@@ -98,23 +98,28 @@ one, or proceed with meetings + email?"* An example menu shape:
 **Exit:** the user has either connected a recommended source (then re-run Phase A to pick it up) or
 **explicitly** chosen to proceed with what's connected, knowing the tradeoff.
 
-## Phase C · Backfill (last 6 months) — raw lands in git as it goes
-**Audit raw storage first (idempotent):** ensure `raw/` and a `.nous/raw.json` marker
-(`{ workspace_id, convention, repo }`) exist in this repo — create them once if missing, leave them
-if present. Raw is filed per the locked convention — **one folder per account**,
-`raw/<account-slug>/<date>-<source>-<externalId>.md`. Full spec: `../sync/references/raw-storage.md`.
+## Phase C · Backfill — the server runs it, you do not
+The history backfill runs **on the server**, for every plan, since 2026-09-28 (GET-514). Do not
+pull history through the connectors yourself: it would read the same conversations twice and
+bill them twice. The server's windows are fixed and the same for everyone:
 
-Then run the **`backfill`** skill over the connected sources (default window: 6 months). It pulls
-history through the connectors, extracts on the user's tokens, **writes each item's raw into its
-account folder**, and files structure via `record` / `record_insight` carrying a `source_ref` git
-pointer to that raw. Idempotent and resumable — accounts and their raw folders materialize as it
-goes; a re-run overwrites the same paths, never duplicates. Report progress as it runs.
+- **12 months** of CRM records — imported the moment the CRM connects, no model, no credits.
+- **3 months** of calls and email — read into facts and insights on the accounts.
+- **30 days** — the same reading, plus tasks.
 
-**Exit:** the 6-month window is fully processed for every required source (backfill reports done),
-with each item's raw written under `raw/<account-slug>/`.
+What it reads is priced before it runs, in **backfill credits** against the plan's allowance
+(included in the plan, never the month's credits). Send the user to confirm it on
+**https://app.opennous.cloud/get-started** (step 3, "Run your backfill") — the estimate card is
+there, and the backfill runs on our side once they say yes; a bar in the app's sidebar shows how
+far it has got. `whoami` tells you whether it has started.
+
+Use the **`backfill`** skill only for a source the app cannot connect — a CSV, a tool with no
+integration — and say that is what you are doing.
+
+**Exit:** the user has confirmed the backfill (or chosen the last 30 days), or told you they will.
 
 ## Phase D · Set up the ICP, then materialize & report
-Once backfill is drained:
+Once the backfill has finished (the app's sidebar says "History in", or `whoami` says so):
 1. **Build the ICP from the deals that actually closed. Do not ask them for it.**
 
    Nobody can describe their ICP accurately on day one — the answer you get is aspiration, and
@@ -122,9 +127,7 @@ Once backfill is drained:
    you are held to it here, so the two surfaces cannot teach a user two different things about
    where their ICP comes from.
 
-   You are in a **better** position than the app to obey it: the backfill has already drained,
-   so the closed cohorts are in the graph *right now* rather than hours away. So do the thing
-   the app has to wait for.
+   Once the backfill has finished the closed cohorts are in the graph, so build it from them.
 
    **Admin/founder, closed deals present — the default path.** Pull `closed_won` and
    `closed_lost` with `query` (`scope.property:"stage"`, `return:"entities"`) and feed their
