@@ -2,7 +2,8 @@
 name: automate
 description: >
   Turns on the built-in automations that work your calls while you sleep — after every call, draft
-  the follow-up and coach it; every Sunday, a coaching report. Installs the GitHub Actions that run
+  the follow-up and coach it; every Sunday, a coaching report; and, for a workspace with its own
+  scorecard, keep ICP scores current (after calls and nightly). Installs the GitHub Actions that run
   the plugin headlessly on your own tokens, in your connected repo. Use when the user says "turn on
   automations", "automate my follow-ups", "set up the after-call automation", "make it run after
   every call", or asks how the automations in Settings actually run. One-time setup; idempotent.
@@ -54,8 +55,12 @@ Write these into the repo, then commit them:
    `coaching/<date>-<account>.md` and the channel-aware follow-up draft to
    `drafts/<account>/<date>-follow-up.md`, never send). Same for `weekly-coaching` →
    `.nous/skills/weekly-coaching.md` when the user wants the weekly report.
+   **Rescore** (only when the repo has `icp/scorecard.md`, i.e. the user built their own scorecard):
+   copy `templates/nous-rescore.yml` → `.github/workflows/nous-rescore.yml` and copy
+   `${CLAUDE_PLUGIN_ROOT}/scorer/nous-score.mjs` → `.nous/scorer/nous-score.mjs` (the CI has no plugin
+   installed, so the script lives in the repo). Re-running this skill refreshes that copy.
 3. **The config** — copy `templates/automation.json` → `.nous/automation.json` (set `after_call.enabled`
-   / `weekly_coaching.enabled` to what the user asked for).
+   / `weekly_coaching.enabled` / `rescore.enabled` to what the user asked for).
 Commit with a clear message (e.g. `chore: install Nous automations`).
 
 ## Phase 2 · Set the secrets — NOUS_API_KEY + one Claude credential
@@ -65,6 +70,8 @@ The headless run needs `NOUS_API_KEY` (workspace-scoped, for the plugin's MCP) *
   (Max/Pro), no API credits. Prefer this if they have a subscription. The workflow uses it when set.
 - **`ANTHROPIC_API_KEY`** — API billing, needs credits. Use if they pay per-token.
 Ask which the user has, and set only that one (plus `NOUS_API_KEY`).
+**Rescore needs `OPENROUTER_API_KEY` instead** (Jev runs on OpenRouter; the rescore workflow runs no
+Claude). Set it the same way when rescore is on; it is the user's own key from https://openrouter.ai/keys.
 - **If `gh` is available and authed:** always use the `--body` form (the interactive prompt is
   unreliable). Nous key by pipe:
   `python3 -c "import json;print(json.load(open('$HOME/.nous/config.json'))['apiKey'],end='')" | gh secret set NOUS_API_KEY --repo <owner>/<name>`.
@@ -80,6 +87,9 @@ The dispatch that triggers the after-call run is gated by the app toggle. Tell t
 **After every call** on at https://app.opennous.cloud/settings?section=sequences (Settings →
 Automations) — or confirm it's already on. That flag is what makes Nous fire the workflow when a
 call ends.
+
+Rescore: the nightly run needs nothing more. The after-call re-score rides the same dispatch, so it
+fires when **After every call** is on.
 
 ## Phase 4 · Confirm
 Tell the user, in a couple of lines: what's now installed, what will happen on the next call (the

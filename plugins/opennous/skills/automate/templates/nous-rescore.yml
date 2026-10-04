@@ -1,0 +1,48 @@
+# Nous — keep your ICP scores current. Installed by the `automate` skill; do not edit by hand (re-run
+# /opennous:automate to update). Scores with YOUR icp/scorecard.md and Jev, then writes the scores to Nous
+# through the public API. No Claude run: just the scorer script, so it is cheap enough to run every night.
+#   - after a call or meeting: Nous fires a repository_dispatch, and that one account is re-scored
+#   - every night: everyone is re-scored, so enrichment and new facts are picked up too
+# Requires two repo secrets: NOUS_API_KEY and OPENROUTER_API_KEY (Jev runs on OpenRouter).
+name: Nous — rescore
+
+on:
+  repository_dispatch:
+    # Today Nous dispatches meeting_held. The webhook GitHub destination (GET-670) adds the rest.
+    types: [nous.meeting_held, nous.interaction.meeting_held, nous.conversation.call_ended, nous.conversation.reply_received]
+  schedule:
+    - cron: "17 3 * * *"   # nightly, 03:17 UTC (off the hour: GitHub delays top-of-hour schedules)
+  workflow_dispatch: {}    # run by hand from the Actions tab: re-scores everyone
+
+concurrency:
+  # One run per account at a time; the nightly run has its own lane.
+  group: nous-rescore-${{ github.event.client_payload.entity_id || 'all' }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read           # reads icp/scorecard.md; writes go to Nous, never to the repo
+
+jobs:
+  rescore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Score
+        env:
+          NOUS_API_KEY: ${{ secrets.NOUS_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          ENTITY_ID: ${{ github.event.client_payload.entity_id }}
+        run: |
+          if [ ! -f icp/scorecard.md ]; then
+            echo "No icp/scorecard.md in this repo. Run /opennous:build-scorecard first."; exit 1
+          fi
+          if [ -n "$ENTITY_ID" ]; then
+            node .nous/scorer/nous-score.mjs run "$ENTITY_ID"
+          else
+            node .nous/scorer/nous-score.mjs run --all
+          fi

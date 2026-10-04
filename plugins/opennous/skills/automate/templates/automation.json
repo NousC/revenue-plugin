@@ -1,5 +1,5 @@
 {
-  "$comment": "Nous automation config — how the built-in automations behave in THIS repo. Edit by hand or re-run /opennous:automate. Mirrors the on/off you set in the app (Settings -> Automations).",
+  "$comment": "Nous automation config \u2014 how the built-in automations behave in THIS repo. Edit by hand or re-run /opennous:automate. Mirrors the on/off you set in the app (Settings -> Automations).",
   "after_call": {
     "enabled": true,
     "channel": "auto",
@@ -9,6 +9,10 @@
   "weekly_coaching": {
     "enabled": false,
     "email": false
+  },
+  "rescore": {
+    "enabled": false,
+    "$comment": "Needs icp/scorecard.md (/opennous:build-scorecard). Re-scores after calls and nightly with your own scorecard + Jev."
   },
   "coaching_tone": "direct",
   "vercel": null
