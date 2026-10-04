@@ -3,6 +3,7 @@
 # through the public API. No Claude run: just the scorer script, so it is cheap enough to run every night.
 #   - after a call, a reply or a meeting: the "Rescore" webhook sends a repository_dispatch, and that
 #     one account is re-scored
+#   - when new people land (people.added, at most hourly): exactly those people are scored
 #   - every night: everyone is re-scored, so enrichment and new facts are picked up too
 # Requires two repo secrets: NOUS_API_KEY and OPENROUTER_API_KEY (Jev runs on OpenRouter).
 name: Nous — rescore
@@ -12,7 +13,7 @@ on:
     # Sent by the "Rescore" webhook /opennous:automate creates (Webhooks page, GitHub destination).
     # Not nous.meeting_held: that is the after-call webhook's name for the same call, and listening
     # to both would re-score every call twice.
-    types: [nous.conversation.call_ended, nous.conversation.reply_received, nous.interaction.meeting_held]
+    types: [nous.conversation.call_ended, nous.conversation.reply_received, nous.interaction.meeting_held, nous.people.added]
   schedule:
     - cron: "17 3 * * *"   # nightly, 03:17 UTC (off the hour: GitHub delays top-of-hour schedules)
   workflow_dispatch: {}    # run by hand from the Actions tab: re-scores everyone
@@ -40,11 +41,16 @@ jobs:
           NOUS_API_KEY: ${{ secrets.NOUS_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           ENTITY_ID: ${{ github.event.client_payload.entity_id }}
+          PERSON_IDS: ${{ join(github.event.client_payload.person_ids, ' ') }}
+          PEOPLE_COUNT: ${{ github.event.client_payload.count }}
         run: |
           if [ ! -f icp/scorecard.md ]; then
             echo "No icp/scorecard.md in this repo. Run /opennous:build-scorecard first."; exit 1
           fi
-          if [ -n "$ENTITY_ID" ]; then
+          if [ -n "$PERSON_IDS" ] && [ "${PEOPLE_COUNT:-0}" -le 100 ]; then
+            # people.added: score exactly who came in. Over 100 in an hour falls through to everyone.
+            node .nous/scorer/nous-score.mjs run $PERSON_IDS
+          elif [ -n "$ENTITY_ID" ]; then
             node .nous/scorer/nous-score.mjs run "$ENTITY_ID"
           else
             node .nous/scorer/nous-score.mjs run --all

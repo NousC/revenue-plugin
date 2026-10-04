@@ -98,7 +98,7 @@ Settings → Repo, so no token travels in the request:
 ```
 curl -s https://api.opennous.cloud/v2/webhooks -H "X-API-Key: $NOUS_API_KEY" -H "Content-Type: application/json" \
   -d '{"name":"Rescore","destination":{"type":"github","connected_repo":true},
-       "events":["conversation.call_ended","conversation.reply_received","interaction.meeting_held"]}'
+       "events":["conversation.call_ended","conversation.reply_received","interaction.meeting_held","people.added"]}'
 ```
 (`NOUS_API_KEY` from `~/.nous/config.json`; read it into the shell, never echo it.) First list
 `GET /v2/webhooks` and skip this if a webhook named "Rescore" with a GitHub destination for this repo
