@@ -34,6 +34,8 @@ Work the PIPELINE
 - Whole-pipeline review                       -> `/opennous:review-pipeline`
 - What changed / who went quiet              -> `/opennous:whats-changed`
 - Score + tier a lead list                   -> `/opennous:triage-leads`
+- Build your own ICP scorecard (Jev)        -> `/opennous:build-scorecard`
+- Score everyone with your scorecard        -> `/opennous:score-accounts`
 - Ask the graph anything                      -> `/opennous:ask-nous`
 
 Close the loop & REPORT
