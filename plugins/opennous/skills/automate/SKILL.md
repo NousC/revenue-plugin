@@ -88,8 +88,22 @@ The dispatch that triggers the after-call run is gated by the app toggle. Tell t
 Automations) — or confirm it's already on. That flag is what makes Nous fire the workflow when a
 call ends.
 
-Rescore: the nightly run needs nothing more. The after-call re-score rides the same dispatch, so it
-fires when **After every call** is on.
+**After every call** is a webhook now: switching it on in Settings → Automations creates a GitHub
+webhook for the connected repo, listed on the Webhooks page as "from Automations" with its own
+delivery log and test send. Nothing more to set up here.
+
+**Rescore** (only when you installed `nous-rescore.yml`): the nightly run needs nothing more. For the
+same-day re-score, create the "Rescore" webhook once. It uses the repo and token already connected in
+Settings → Repo, so no token travels in the request:
+```
+curl -s https://api.opennous.cloud/v2/webhooks -H "X-API-Key: $NOUS_API_KEY" -H "Content-Type: application/json" \
+  -d '{"name":"Rescore","destination":{"type":"github","connected_repo":true},
+       "events":["conversation.call_ended","conversation.reply_received","interaction.meeting_held"]}'
+```
+(`NOUS_API_KEY` from `~/.nous/config.json`; read it into the shell, never echo it.) First list
+`GET /v2/webhooks` and skip this if a webhook named "Rescore" with a GitHub destination for this repo
+already exists: re-running the skill must not create a second one. A `no_connected_repo` error means
+Settings → Repo isn't connected yet: send the user there first.
 
 ## Phase 4 · Confirm
 Tell the user, in a couple of lines: what's now installed, what will happen on the next call (the

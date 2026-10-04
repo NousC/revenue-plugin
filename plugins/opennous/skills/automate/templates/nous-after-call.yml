@@ -8,7 +8,9 @@ name: Nous — after call
 
 on:
   repository_dispatch:
-    types: [nous.meeting_held]
+    # nous.meeting_held is what the "After every call" webhook sends (Settings → Automations);
+    # nous.conversation.call_ended is the same moment from a webhook you made yourself.
+    types: [nous.meeting_held, nous.conversation.call_ended]
   workflow_dispatch: {}   # lets you run it by hand from the Actions tab
 
 concurrency:
