@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// nous-score — score your accounts with YOUR scorecard.md, using Jev, and write the scores to Nous.
+// nous-score — score your accounts with YOUR scorecard.md, using Jev, and write the scores to OpenNous.
 //
 // Runs anywhere Node 20 runs (your laptop, a GitHub Action). No dependencies. Talks to Nous only
 // through the public API, exactly like any outside scorer:
@@ -327,7 +327,7 @@ async function main() {
     ` · Jev cost $${cost.toFixed(4)}` +
     (rows.length - scored.length ? ` · ${rows.length - scored.length} not scored (no evidence, or an error)` : ''));
   if (posted) {
-    console.log(`written to Nous: ${posted.staked} new · ${posted.updated} updated · ${posted.unchanged} unchanged` +
+    console.log(`written to OpenNous: ${posted.staked} new · ${posted.updated} updated · ${posted.unchanged} unchanged` +
       (posted.missed.length ? ` · ${posted.missed.length} not written:\n  ${posted.missed.slice(0, 20).join('\n  ')}` : ''));
   } else if (cmd === 'run') console.log('dry run: nothing written.');
   else console.log('test: nothing written.');
