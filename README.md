@@ -17,6 +17,9 @@ which deals need you today, forecasts what will close, and learns from what you 
 /opennous:login
 ```
 
+**Claude (claude.ai and the desktop app):** in **Customize → Plugins**, find **OpenNous** and install
+it, then sign in. The same skills run in chat.
+
 **Codex, Cursor and other agents:** see [Use it with any agent](#use-it-with-any-agent).
 
 ## What you can ask
@@ -48,7 +51,6 @@ You never have to name a skill, because the plugin routes the request to the rig
 
 ```bash
 /opennous:login
-/reload-plugins
 ```
 
 **3. Let the agent take it from there.** On a new workspace, onboarding starts on its own. The agent
@@ -179,7 +181,7 @@ We designed the plugin so the raw material stays with you.
 
 The Claude Code plugin installs three things, and none of them edits your files.
 
-- **The Nous MCP server** (`npx @opennous/mcp`), which gives the agent its OpenNous tools.
+- **The OpenNous MCP server**, hosted at `https://mcp.opennous.cloud/mcp`, which gives the agent its OpenNous tools. Nothing runs locally for it.
 - **A session-start hook** that tells the agent to use Nous for revenue work and appends what your
   workspace has learned about which recommendations get accepted. If the API is slow or unreachable,
   it gives up after 4 seconds and prints nothing.

@@ -14,8 +14,8 @@ Confirm the plugin is wired, report who the agent acts as, and show what's in th
 
 ## Steps
 1. Call `whoami`. This is the identity check:
-   - If it **errors / 401**, the `NOUS_API_KEY` isn't set or is invalid — tell the user to set it
-     (get a key at app.opennous.cloud → Settings → API Keys) and stop.
+   - If it **errors / 401**, the user isn't signed in — tell them to run `/opennous:login` (in
+     Claude.ai: reconnect OpenNous in Customize → Connectors) and stop.
    - If it **returns**, note who the key acts as: the **workspace**, the **person**, their **scope**
      (admin = whole workspace · member = their own book + shared graph), and their **GTM role(s)**
      (e.g. AE, SDR, founder — a person can hold several).

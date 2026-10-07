@@ -77,7 +77,7 @@ unit. Read `supports` on every payload first and never write a section it marks 
 | `win_loss_data` | once, `{ months }` | closed cohort, cause taxonomy with its unclassified bucket, objections, competitors, `paths` (ordered steps with the won rate beside the lost), `paths.traces`, the rep's stated reason |
 | `customer_success_data` | once | active customers and MRR, at risk with the strongest reason and quote, expansion with the product asked for, churned, the conversation-versus-CRM evidence split |
 | `insights` | once, no category | product, positioning, market and buyer themes with mention counts and verbatim evidence |
-| `metrics` | `{ measure: 'tasks_created', since_days: 30, group_by: 'owner' }` and `{ measure: 'signals_raised', since_days: 30, group_by: 'kind' }` | what the system produced from the same record in the last 30 days |
+| `metrics` | `{ measure: 'signals_raised', since_days: 30, group_by: 'kind' }` and `{ measure: 'tasks_created', since_days: 30, group_by: 'person' }` | every kind of signal raised from the record in the last 30 days, and the tasks created from it by the person each is for |
 | `get_account` | once, for the single account examined in section 05 | the dated record behind that example |
 | `whoami` | once | the company name, for the title |
 
@@ -95,9 +95,15 @@ Insight headline     the quantified finding     "9 of 34 customers carry an expl
 Opening paragraph    two sentences: what this section examines, on what basis
 Primary visual       one chart, table, path or pair of columns
 Key figures          2 to 4, each with its denominator
-Interpretation       two or three sentences, hedged, separated from the observation
+Interpretation       3 to 5 BULLETS, never a paragraph: one observation each, hedged where
+                     it is a reading. A block of six sentences restating the figures above it
+                     is the single most common way this document stops being read.
 Customer Evidence    one representative quote, sourced
 ```
+
+**Never close a section with a wall of prose.** The last block of a section is a `bullets` block
+of 3 to 5 lines, each one sentence. Use `prose` only for a genuine two-sentence bridge; anything
+longer belongs in bullets, and anything that merely restates the chart above it belongs nowhere.
 
 **Recommendations appear only in section 07.** A section ends with its Business Implication, never
 with a takeaway list, so a reader can act from one page at the end rather than from seven.
@@ -108,9 +114,12 @@ Title it "Revenue Intelligence Review" with the company name from `whoami`. Bene
 line: the analysis period, its length in days, and the date generated.
 
 **00 · Scope and Coverage.** Before any finding, so the reader knows what the document can claim.
-The period; the sources and what each contributed, named as real products — HubSpot, Gmail and
-Fellow — with one sentence stating that these three are the entire basis, so nothing else is
-assumed to have been read; the counts (opportunities, accounts, conversations by type, people); and
+The period; the sources and what each contributed, taken from `revenue_report_data.coverage.sources`
+— each already carries the product's real name and the span it covers, so the table reads
+"Fellow · 632 · Jun 2026 – Sep 2026". Name them in one sentence as the entire basis of the
+document, so nothing else is assumed to have been read. `coverage.other_providers` holds
+enrichment and scoring services: they are not sources this report read and never appear in that
+table. Never list a source the payload does not return, and never omit one it does; the counts (opportunities, accounts, conversations by type, people); and
 the gaps as a Data Coverage Gap phrased as what they prevent. Close with one short paragraph
 distinguishing an observed fact from a derived metric from an interpretation.
 *Data: `revenue_report_data.coverage` and `.provenance`, every payload's `provenance.caveats`,
@@ -159,15 +168,19 @@ Blocks: `path` · `chart` grouped won vs not-won · `table` of causes with `emph
 `timeline` of the single account · `prose`.
 
 **06 · What HubSpot Does Not Capture.** (Title it with the provider's name from
-`crm_coverage_data.crm`.) The structured signal inside recorded conversations that no
+`crm_coverage_data.crm`.) Show the WHOLE signal vocabulary the record produced, not the three
+largest kinds: risk signals, expansion asks, buying signals, objections, competitors, budget,
+timeline, authority, staff changes, adoption. A reader who sees three kinds concludes the system
+finds three things. Then, beneath the signals, the tasks created from the same record in the same
+window, by the person each is for — name them, with the count each, and the share unassigned. The structured signal inside recorded conversations that no
 CRM field holds: risks, outstanding commitments, unanswered questions, expansion asks, close-date
 history. Then what the system produced from the same record in the last 30 days — tasks created and
 who they are for, signals raised by kind, accounts affected — as the demonstration. State plainly
 that nothing was written to the CRM.
 *Data: `crm_coverage_data` (all of it; honour `supports.coverage_share_is_the_finding`);
 `metrics` tasks_created by owner and signals_raised by kind.*
-Blocks: `metrics` · `chart` bar of signals by kind · `table` of tasks by owner · `evidence` (ONE
-quote) · `prose`.
+Blocks: `metrics` · `chart` bar of signals by kind (every kind with a count, ranked) · `table` of
+tasks by person with the count each · `evidence` (ONE quote) · `bullets`.
 
 **07 · Recommended Actions.** The only section carrying recommendations. A short summary paragraph,
 then three or four grouped findings each with two to four bullets, then the priority table:
@@ -186,6 +199,10 @@ loss reason, a source connected part-way through the period, a pipeline not sync
 implementation.
 
 ## Output
+
+**Build every section first, then call `present_document` ONCE.** The tool takes the whole
+document in one call and each call replaces the last, so a partial call followed by a complete one
+wastes a step and renders twice. Never present sections 00 to 02 and then "complete" it.
 
 One document via `present_document`, `kind: "report"`. Pass `generated_from` with the real product
 names. Set each section's `kicker` to the formal title ("Customer Health and Retention Risk") and

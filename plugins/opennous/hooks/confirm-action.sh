@@ -23,7 +23,7 @@ API="${NOUS_API_URL:-https://api.opennous.cloud}"
 # is not someone we should be nagging from inside an unrelated tool call.
 KEY="${NOUS_API_KEY:-}"
 if [ -z "$KEY" ] && [ -f "$HOME/.nous/config.json" ]; then
-  KEY="$(sed -n 's/.*"api_key"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$HOME/.nous/config.json" | head -1)"
+  KEY="$(sed -n 's/.*"api_\{0,1\}[kK]ey"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$HOME/.nous/config.json" | head -1)"
 fi
 [ -z "$KEY" ] && exit 0
 command -v jq >/dev/null 2>&1 || exit 0

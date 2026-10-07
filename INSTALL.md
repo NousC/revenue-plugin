@@ -1,6 +1,7 @@
 # Install Nous
 
-This guide covers Claude Code. For Codex, Cursor, Claude Desktop or any other MCP client, follow
+This guide covers Claude Code. In Claude (claude.ai and the desktop app), install **OpenNous** from
+**Customize → Plugins** and sign in. For Codex, Cursor, Claude Desktop or any other MCP client, follow
 [Use it with any agent](./README.md#use-it-with-any-agent) in the README.
 
 In Claude Code this takes about two minutes. You install the plugin, sign in with your browser, and the agent
@@ -19,20 +20,9 @@ sets up your workspace from there.
 /opennous:login
 ```
 
-This opens your browser. Sign in, or sign up if you are new, and the command saves a
-workspace-scoped API key to `~/.nous/config.json`. The plugin's MCP server reads that file on every
-call, so there is nothing to paste.
-
-Then reload the plugin:
-
-```bash
-/reload-plugins
-```
-
-**If you would rather paste a key,** copy one from
-[app.opennous.cloud/connect/api-keys](https://app.opennous.cloud/connect/api-keys), run `/plugin`,
-choose **opennous → configure**, and paste it into **Nous API key**. Claude Code stores it
-encrypted.
+The plugin connects to the hosted OpenNous server, which signs in with your browser. If Claude Code
+asks, run `/mcp`, pick **opennous** and choose **Authenticate**. Sign in, or sign up if you are new.
+There is nothing to paste.
 
 ## 3. Let onboarding run
 
@@ -57,10 +47,8 @@ your role. You can also run `/opennous:status` for a fuller check.
 
 ## Troubleshooting
 
-**The tools return `401 invalid_api_key` right after you signed in.** Fully quit Claude Code and
-open it again. A live MCP connection can keep the old key until it restarts.
-
-**`/opennous:login` timed out or was denied.** Run it again. Each run mints a fresh key.
+**The tools return 401 right after you signed in.** Fully quit Claude Code, open it again, and run
+`/mcp` → **opennous** → **Authenticate**.
 
 **The agent answers account questions from general knowledge.** Run `/reload-plugins`, then start a
 new session. The session-start hook is what tells the agent to use Nous first.
