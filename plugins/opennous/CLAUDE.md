@@ -5,7 +5,7 @@ identity-resolved, ICP-scored Account Record. Reach for Nous **before** answerin
 knowledge — the truth about accounts lives in the graph, through the Nous tools.
 
 ## Getting started (what to do for a new user)
-- **Not signed in?** If a tool returns `invalid_api_key`, tell the user to run `/opennous:login`
+- **Not signed in?** If the OpenNous tools are missing or return `401` / `invalid_api_key`, tell the user to run `/opennous:login`
   (browser sign-in, no paste).
 - **Fresh workspace?** Run `/opennous:onboard` — it detects the revenue tools connected here,
   backfills recent history onto the graph on this agent's tokens, and ends with a pipeline report.

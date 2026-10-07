@@ -20,7 +20,7 @@ cat "${DIR}/routing.concise.txt"
 API="${NOUS_API_URL:-https://api.opennous.cloud}"
 KEY="${NOUS_API_KEY:-}"
 if [ -z "$KEY" ] && [ -f "$HOME/.nous/config.json" ]; then
-  KEY="$(sed -n 's/.*"api_key"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$HOME/.nous/config.json" | head -1)"
+  KEY="$(sed -n 's/.*"api_\{0,1\}[kK]ey"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$HOME/.nous/config.json" | head -1)"
 fi
 if [ -n "$KEY" ]; then
   LEARNED="$(curl -sS -m 4 "${API}/v2/decisions/instructions?format=text" \

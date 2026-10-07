@@ -7,7 +7,7 @@ record, not raw CRM rows or generic knowledge.
 
 ## FIRST MOVE — orient, then act (don't wait to be asked)
 On a fresh or newly-signed-in session: call `whoami` to orient. Then:
-- Not signed in (tools return `invalid_api_key`) -> tell the user to run `/opennous:login`.
+- Not signed in (OpenNous tools missing or return 401 / `invalid_api_key`) -> tell the user to run `/opennous:login`.
 - Signed in but the graph is EMPTY -> **start onboarding immediately**: invoke `/opennous:onboard`
   as your next action (detect connected tools, backfill history, pipeline report). Do NOT present a
   "next steps" menu or ask permission — just begin. Suggesting it instead of running it is wrong.
