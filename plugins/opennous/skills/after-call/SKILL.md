@@ -4,7 +4,7 @@ description: >
   Runs right after a call ends — drafts the follow-up in the channel the conversation lives in
   (email or LinkedIn) and writes a coaching review of how the call went. Normally fired
   automatically by the after-call GitHub Action (the automation layer) the moment a meeting is
-  recorded, but you can also run it by hand: "review my last call with <account>", "draft the
+  recorded, but you can also run it by hand: "review my last call with [account]", "draft the
   follow-up for that meeting", "how did that call go". One account, one just-ended call.
 ---
 

@@ -4,7 +4,7 @@ description: >
   Turns a follow-up into a personalized, on-brand SALES PAGE you can send a lead — a hosted web page
   that sells the next step, built from what you actually know about them (their pain, goals,
   objections, what was said on the call) and rendered in the user's own company brand. Use when the
-  user says "make a sales page for <account>", "build a follow-up page for this deal", "turn this into
+  user says "make a sales page for [account]", "build a follow-up page for this deal", "turn this into
   a page I can send", or after a strong call when a plain email isn't enough. On-demand, one lead at a
   time. Not a generic landing page — every line is grounded in the graph.
 ---
