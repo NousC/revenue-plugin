@@ -9,13 +9,18 @@ in with OAuth in the browser. No key to paste.
 ## Steps
 
 1. **Browser sign-in.** First call `whoami`. If it returns, the user is already signed in — skip to
-   step 2. If the OpenNous tools are missing or return 401, tell the user, in one line:
-   *"Run `/mcp`, pick **opennous** and choose **Authenticate**. Sign in (or sign up) in the browser,
-   then come back."* Wait for them, then call `whoami` again.
+   step 2. If the OpenNous tools are missing or return 401, tell the user, in one line, how to
+   connect where they are:
+   - **Claude.ai or the desktop app:** *"Click **Connect** on OpenNous (or go to Customize →
+     Connectors → OpenNous → Connect), sign in or sign up, click **Allow**, then come back."*
+   - **Claude Code:** *"Run `/mcp`, pick **opennous** and choose **Authenticate**. Sign in (or sign
+     up) in the browser, then come back."*
 
-   Also run `npx -y @opennous/cli login` in the shell if `~/.nous/config.json` doesn't exist. It
-   saves a workspace key the session hooks and `/opennous:automate` use. Skip it if `npx` isn't
-   available; the tools work without it.
+   Wait for them, then call `whoami` again.
+
+   In Claude Code only, also run `npx -y @opennous/cli login` in the shell if `~/.nous/config.json`
+   doesn't exist. It saves a workspace key the session hooks and `/opennous:automate` use. Skip it
+   if there is no shell or `npx`; the tools work without it.
 
 2. **Orient — one call.** Call `whoami`. It returns identity/scope/role AND `setup` —
    `setup.accounts` (how many accounts exist), `setup.onboarded`, and `setup.has_icp`. That account
