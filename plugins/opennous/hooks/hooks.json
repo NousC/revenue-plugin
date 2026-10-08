@@ -1,5 +1,5 @@
 {
-  "description": "Two hooks for the Nous plugin. SessionStart tells the agent to use Nous for revenue work and appends what this workspace has learned. PostToolUse reports a send (recipient and a hash of the body) so a recommendation the agent acted on is graded against what actually happened. Neither hook edits the user's files.",
+  "description": "SessionStart tells the agent to use OpenNous for revenue work. It reads one file in the plugin and makes no network calls.",
   "hooks": {
     "SessionStart": [
       {
@@ -8,18 +8,6 @@
           {
             "type": "command",
             "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/session-routing.sh"
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "mcp__.*([Gg]mail|linkedin|unipile|instantly|heyreach|smartlead).*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"${CLAUDE_PLUGIN_ROOT}\"/hooks/confirm-action.sh",
-            "timeout": 10
           }
         ]
       }
