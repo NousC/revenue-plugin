@@ -1,7 +1,7 @@
 {
   "name": "opennous",
   "displayName": "OpenNous",
-  "version": "0.20.1",
+  "version": "0.20.2",
   "description": "Give Claude one source of truth about your deals, accounts, and activities, with skills that brief you before calls, draft follow-ups, forecast deals and review your pipeline.",
   "author": {
     "name": "OpenNous",
@@ -22,6 +22,15 @@
     "mcp",
     "claude"
   ],
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "OpenNous API key (optional)",
+      "description": "Only for Claude Code: lets the session hooks bring in what your workspace has learned and report sends. Get one at https://app.opennous.cloud/connect/api-keys. The OpenNous tools work without it.",
+      "sensitive": true,
+      "required": false
+    }
+  },
   "mcpServers": {
     "opennous": {
       "type": "http",

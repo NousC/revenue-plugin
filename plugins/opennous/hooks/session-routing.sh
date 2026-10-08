@@ -18,10 +18,7 @@ cat "${DIR}/routing.concise.txt"
 # Fails silently and completely. This block is an enhancement to a session that already works,
 # so a slow or unreachable API must cost the user nothing — no error, no delay, no partial text.
 API="${NOUS_API_URL:-https://api.opennous.cloud}"
-KEY="${NOUS_API_KEY:-}"
-if [ -z "$KEY" ] && [ -f "$HOME/.nous/config.json" ]; then
-  KEY="$(sed -n 's/.*"api_\{0,1\}[kK]ey"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$HOME/.nous/config.json" | head -1)"
-fi
+KEY="${CLAUDE_PLUGIN_OPTION_API_KEY:-}"
 if [ -n "$KEY" ]; then
   LEARNED="$(curl -sS -m 4 "${API}/v2/decisions/instructions?format=text" \
     -H "Authorization: Bearer ${KEY}" -H 'X-Nous-Client: plugin-hook' 2>/dev/null)"
