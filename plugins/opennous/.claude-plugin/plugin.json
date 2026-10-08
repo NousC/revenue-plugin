@@ -1,5 +1,6 @@
 {
   "name": "opennous",
+  "displayName": "OpenNous",
   "version": "0.20.0",
   "description": "Give Claude one source of truth about your deals, accounts, and activities, with skills that brief you before calls, draft follow-ups, forecast deals and review your pipeline.",
   "author": {
@@ -8,6 +9,7 @@
   },
   "homepage": "https://opennous.cloud",
   "repository": "https://github.com/NousC/revenue-plugin",
+  "license": "MIT",
   "keywords": [
     "revenue",
     "sales",
@@ -25,5 +27,10 @@
       "type": "http",
       "url": "https://mcp.opennous.cloud/mcp"
     }
-  }
+  },
+  "icon": "./icon.png",
+  "documentationUrl": "https://docs.opennous.cloud/mcp/connect/claude",
+  "supportUrl": "https://github.com/NousC/revenue-plugin/issues",
+  "privacyPolicyUrl": "https://www.opennous.cloud/privacy",
+  "termsOfServiceUrl": "https://www.opennous.cloud/terms"
 }
