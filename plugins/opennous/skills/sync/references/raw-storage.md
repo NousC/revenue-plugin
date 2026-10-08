@@ -1,7 +1,7 @@
 # Raw storage — where raw goes in git, and how (the locked convention)
 
 Nous holds only structure; the **raw stays in the operator's git**. Every skill that files an
-interaction (`sync`, `backfill`) writes the raw transcript/email/thread to a file and records a
+interaction (`sync`) writes the raw transcript/email/thread to a file and records a
 `source_ref` pointer to it. This is that convention — one place, so every write lands the same and
 `source_ref` always resolves.
 

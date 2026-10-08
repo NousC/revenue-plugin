@@ -33,7 +33,7 @@ Give the user the delta, not the whole graph: what moved since they last looked,
 ```
 
 ## Rules
-- **Attribute inline, don't quote.** Short attribution — *(per Taimoor, 16 Jun)* — so the delta
+- **Attribute inline, don't quote.** Short attribution — *(per Priya, 16 Jun)* — so the delta
   stays scannable. The full quote belongs in `brief` or `plan-account`.
 - Lead with what's waiting on the user (replies, buying signals), not raw chronology.
 - Include the gone-quiet section even when activity looks busy — silence is a signal.

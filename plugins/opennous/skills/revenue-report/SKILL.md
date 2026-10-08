@@ -1,6 +1,7 @@
 ---
 name: revenue-report
-description: THE Revenue Intelligence Review — one executive document, seven sections, built from the CRM, the conversation record and the customer base. It states what was analysed and what it cannot claim, then answers the questions a CRO asks: where revenue activity is happening, where revenue is at risk, where expansion is being missed, why opportunities close won or lost, what the CRM is failing to capture, and what to address next. Use it after a backfill, when anyone asks for "the revenue report", "how did the last six months go", "what did we miss", "why do we lose", "who is at risk", "what are buyers telling us", or when onboarding reaches its payoff. It absorbed win-loss, market-read and team-report: run this. Produces ONE document.
+description: THE Revenue Intelligence Review — one executive document, seven sections, built from the CRM, the conversation record and the customer base. It states what was analysed and what it cannot claim, then answers the questions a CRO asks: where revenue activity is happening, where revenue is at risk, where expansion is being missed, why opportunities close won or lost, what the CRM is failing to capture, and what to address next. Use it after a backfill, when anyone asks for "the revenue report", "how did the last six months go", "what did we miss", "why do we lose", "who is at risk", "what are buyers telling us". It absorbed win-loss, market-read and team-report: run this. Produces ONE document. Also the reporting for ONE seat: when a rep asks "my report", "what's blocking my deals", "what are buyers objecting to" or "what should I know this week", give the role-routed version described under "For one seat".
+
 ---
 
 # Revenue Intelligence Review
@@ -209,6 +210,31 @@ names. Set each section's `kicker` to the formal title ("Customer Health and Ret
 its `label` to the insight headline: the quantified finding in one line.
 
 Then one line in the chat: the single finding you would lead with, and what you would do about it.
+
+
+## For one seat ("my report")
+
+When a rep asks for *their* reporting rather than the company review, skip the seven sections and
+give the insights routed to their role(s):
+
+1. `whoami` → the caller's GTM role(s). No role: ask which seat (AE · SDR/BDR · Customer Success ·
+   Product & Engineering · RevOps · Marketing), or default to Account Executive.
+2. For each role, `query` with `scope: { reporting: "role", role: "<role>" }`. The server reframes
+   each insight for that seat (an objection is a "Deal blocker" to an AE, an "Early objection" to an
+   SDR, a "Feature request" to Engineering).
+3. Lead with deal blockers ranked by how many accounts raise them, then the role's signals. Make each
+   one a move for that seat. A person with several roles gets one labeled section per role.
+
+```
+# Your report — <Role>
+**Deal blockers**
+- <objection> — raised across <n> accounts → <the move for this seat>
+**Signals for you**
+- <theme> — <n> mentions → <what it means for your work>
+```
+
+Never show a rep the company view, and never inflate an account count. File it with `save_page`
+(`kind: "report"`, `skill: "revenue-report"`) like the full review.
 
 ## Rules
 

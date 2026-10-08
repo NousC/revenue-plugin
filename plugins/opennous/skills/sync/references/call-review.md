@@ -36,7 +36,7 @@ Fireflies, Fathom and Fellow name every speaker.
 it together and credit each good or weak moment to the teammate it belongs to, by name.
 
 **Talk time — measure it, don't guess it.** With named speakers, count words per speaker and give the
-team's share (e.g. "our team 62% — Aakash 45%, Bennet 17%; Collin 38%"). With a Granola me/them
+team's share (e.g. "our team 62% — Sofia 45%, Marco 17%; Priya 38%"). With a Granola me/them
 transcript, use the recorder's share of speaking time. Grade Talk / listen on that number.
 
 ## Step 3 — score the rubric

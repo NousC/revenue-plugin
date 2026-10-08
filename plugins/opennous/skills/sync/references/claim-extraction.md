@@ -19,7 +19,7 @@ what lets identity resolution attach repeat meetings to the same record. Record 
 
 **On their company** (`about:'company'`, focus = the person — the engine routes it to the company and
 creates/links the company entity):
-- `domain` — **derive from the work email** (`jack.cane@revenanas.com` → `revenanas.com`). This is the
+- `domain` — **derive from the work email** (`priya@harbourline.example` → `harbourline.example`). This is the
   reliable key that identifies + creates the company. Record it whenever there's a work email.
 - `company` — the company **name**, ONLY if you actually find it in the transcript/metadata
   (e.g. "Alibaba Cloud"). **Never use the person's name as the company.** If the name isn't stated,
@@ -110,8 +110,8 @@ critique, or a reason-for-reaching-out that they genuinely voice IS a fact and m
   name. "us/our/we" for our own side is fine. The rule exists so the fact resolves to one person
   standing alone — not to force stilted third-person prose, which then leaks into every draft
   built on it.
-  ❌ "Jack Cane stated that Jack Cane's team evaluated Clay before Jack Cane chose Apollo."
-  ✅ "Jack Cane's team evaluated Clay and chose Apollo because they needed a native API."
+  ❌ "Allan Moore stated that Allan Moore's team evaluated Clay before Allan Moore chose Apollo."
+  ✅ "Allan Moore's team evaluated Clay and chose Apollo because they needed a native API."
 - `about` = "person" (about the attendee) or "company" (about their company; inherited by the whole account).
 - `label` = a 2–4 word Title Case tag naming the SUBSTANCE (not the person's name). For a competitor
   use the vendor name ("Pearl Lemon"); for an objection name it ("Outbound intent doubts"); for a
@@ -139,14 +139,14 @@ they said, never something you wrote.
 
 **Worked example.** From a line in the transcript:
 
-> **Taimoor:** yeah honestly I don't trust Clay is gonna be around in two years, so we're pulling
+> **Priya:** yeah honestly I don't trust Clay is gonna be around in two years, so we're pulling
 > reporting and invoicing into Claude Code instead
 
 ```json
-{"content":"Taimoor Ali is moving 7xGTM's reporting and invoicing off Clay into Claude Code because he doubts Clay's longevity.",
+{"content":"Priya Sandhu is moving Harbourline's reporting and invoicing off Clay into Claude Code because she doubts Clay's longevity.",
  "label":"Clay Displacement","category":"status_quo","about":"company",
  "quote":"I don't trust Clay is gonna be around in two years, so we're pulling reporting and invoicing into Claude Code instead",
- "speaker":"Taimoor Ali"}
+ "speaker":"Priya Sandhu"}
 ```
 
 Note the `content` is a clean third-person sentence and the `quote` is exactly what he said, filler

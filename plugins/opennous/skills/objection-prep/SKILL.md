@@ -1,6 +1,6 @@
 ---
 name: objection-prep
-description: Preps the objections you'll hear on a specific deal and the answer to each — drawn from the objections already recorded on that account, ordered by how hard and how unaddressed they are, with the counter grounded in your own positioning and proof. Use when the user asks what objections they'll face, to handle pushback on a deal, what the account is worried about, or to prep for a tough conversation. For the cross-account objection battlecard, that's `role-report`.
+description: Preps the objections you'll hear on a specific deal and the answer to each — drawn from the objections already recorded on that account, ordered by how hard and how unaddressed they are, with the counter grounded in your own positioning and proof. Use when the user asks what objections they'll face, to handle pushback on a deal, what the account is worried about, or to prep for a tough conversation. For objections across every account, that's `revenue-report` ("my report").
 ---
 
 # Objection prep

@@ -8,9 +8,9 @@ record, not raw CRM rows or generic knowledge.
 ## FIRST MOVE — orient, then act (don't wait to be asked)
 On a fresh or newly-signed-in session: call `whoami` to orient. Then:
 - Not signed in (OpenNous tools missing or return 401 / `invalid_api_key`) -> tell the user to run `/opennous:login`.
-- Signed in but the graph is EMPTY -> **start onboarding immediately**: invoke `/opennous:onboard`
-  as your next action (detect connected tools, backfill history, pipeline report). Do NOT present a
-  "next steps" menu or ask permission — just begin. Suggesting it instead of running it is wrong.
+- Signed in but the graph is EMPTY -> setup happens in the OpenNous app. Send the user to
+  **Get started** at https://app.opennous.cloud/?getstarted=1 (connect the CRM, email and meeting
+  notes, start the backfill), in one line, then help with whatever they ask.
 - Signed in and set up -> run `/opennous:focus` for the day's worklist.
 
 ## Reach for Nous FIRST — use the SKILL for the job
@@ -37,18 +37,16 @@ Work the PIPELINE
 - Ask the graph anything                      -> `/opennous:ask-nous`
 
 Close the loop & REPORT
-- Won/lost patterns                           -> `/opennous:win-loss`
-- Company voice-of-market (founder)           -> `/opennous:market-read`
-- Your seat's reporting                       -> `/opennous:role-report`
+- Revenue review, won/lost, voice of market  -> `/opennous:revenue-report`
+- Your seat's reporting ("my report")         -> `/opennous:revenue-report`
 
-Keep it current / INGEST
+Keep it current
 - File a just-finished call or email          -> `/opennous:sync`
-- Bulk-import months of history               -> `/opennous:backfill`
-- Is it set up, what's next                   -> `/opennous:status`
+- Follow-up + coaching after a call           -> `/opennous:after-call`
 
 ## The tools underneath (the skills call these)
 `whoami` · `get_context` · `get_account` · `query` · `score` · `deals` · `record` · `record_insight` · `set_icp`
-(set_icp establishes the ICP scoring model — used in onboarding).
+(set_icp writes the ICP scoring model.)
 Reach for a tool DIRECTLY only for an atomic move that has no skill: a quick
 `get_context` / `get_account` / `deals` lookup mid-conversation, `record` a fact / interaction /
 signal the moment you learn it (the closed loop — do this after every interaction),

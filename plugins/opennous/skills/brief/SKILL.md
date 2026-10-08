@@ -13,7 +13,7 @@ whether to spend an hour on it. Write the one they need.
 ## First: an account is a COMPANY
 
 An account brief is about the account — the company — even when the operator names a person.
-"Brief me on 7xGTM" and "brief me on Taimoor" are usually the same request: the deal lives at
+"Brief me on Harbourline" and "brief me on Priya" are usually the same request: the deal lives at
 the company, the people are how you reach it.
 
 So: **resolve to the company and write the company's brief.** Name its people inside, in

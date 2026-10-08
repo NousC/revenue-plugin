@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Give Claude, Codex, and any agent one source of truth about your deals, accounts, and activities.",
-    "version": "0.21.0"
+    "version": "0.22.0"
   },
   "plugins": [
     {
