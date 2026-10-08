@@ -1,7 +1,7 @@
 {
   "name": "opennous",
   "displayName": "OpenNous",
-  "version": "0.20.2",
+  "version": "0.20.3",
   "description": "Give Claude one source of truth about your deals, accounts, and activities, with skills that brief you before calls, draft follow-ups, forecast deals and review your pipeline.",
   "author": {
     "name": "OpenNous",
