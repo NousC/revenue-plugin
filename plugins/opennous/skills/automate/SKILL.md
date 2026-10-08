@@ -66,8 +66,9 @@ The headless run needs `NOUS_API_KEY` (workspace-scoped, for the plugin's MCP) *
 - **`ANTHROPIC_API_KEY`** — API billing, needs credits. Use if they pay per-token.
 Ask which the user has, and set only that one (plus `NOUS_API_KEY`).
 - **If `gh` is available and authed:** always use the `--body` form (the interactive prompt is
-  unreliable). Nous key by pipe:
-  `python3 -c "import json;print(json.load(open('$HOME/.nous/config.json'))['apiKey'],end='')" | gh secret set NOUS_API_KEY --repo <owner>/<name>`.
+  unreliable). Ask the user to create a key at https://app.opennous.cloud/connect/api-keys and
+  paste it, then: `gh secret set NOUS_API_KEY --repo <owner>/<name> --body "<the key they pasted>"`.
+  Never read a key from the user's machine.
   Then the Claude credential with `--body`: `gh secret set CLAUDE_CODE_OAUTH_TOKEN --repo <owner>/<name> --body "sk-ant-oat01-…"` (from `claude setup-token`), OR
   `gh secret set ANTHROPIC_API_KEY --repo <owner>/<name> --body "sk-ant-…"`. The `--body` value is
   the user's to paste — never invent or echo one. Confirm with `gh secret list --repo <owner>/<name>`.
