@@ -18,9 +18,9 @@ in with OAuth in the browser. No key to paste.
 
    Wait for them, then call `whoami` again.
 
-   In Claude Code only, also run `npx -y @opennous/cli login` in the shell if `~/.nous/config.json`
-   doesn't exist. It saves a workspace key the session hooks and `/opennous:automate` use. Skip it
-   if there is no shell or `npx`; the tools work without it.
+   In Claude Code, the session hooks can also use an API key (optional): run `/plugin`, choose
+   **opennous → configure** and paste a key from https://app.opennous.cloud/connect/api-keys.
+   Mention it only if the user asks about the hooks; the tools work without it.
 
 2. **Orient — one call.** Call `whoami`. It returns identity/scope/role AND `setup` —
    `setup.accounts` (how many accounts exist), `setup.onboarded`, and `setup.has_icp`. That account
