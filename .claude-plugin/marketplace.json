@@ -12,7 +12,8 @@
     {
       "name": "opennous",
       "source": "./plugins/opennous",
-      "description": "Give Claude one source of truth about your deals, accounts, and activities, with skills that brief you before calls, draft follow-ups, forecast deals and review your pipeline."
+      "description": "Give Claude one source of truth about your deals, accounts, and activities, with skills that brief you before calls, draft follow-ups, forecast deals and review your pipeline.",
+      "displayName": "OpenNous"
     }
   ]
 }
