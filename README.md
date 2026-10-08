@@ -179,16 +179,14 @@ We designed the plugin so the raw material stays with you.
 
 ## What runs on your machine
 
-The Claude Code plugin installs three things, and none of them edits your files.
+The Claude Code plugin installs two things, and neither of them edits your files.
 
 - **The OpenNous MCP server**, hosted at `https://mcp.opennous.cloud/mcp`, which gives the agent its OpenNous tools. Nothing runs locally for it.
-- **A session-start hook** that tells the agent to use Nous for revenue work and appends what your
-  workspace has learned about which recommendations get accepted. If the API is slow or unreachable,
-  it gives up after 4 seconds and prints nothing.
-- **A send-confirmation hook** that fires after the agent uses a Gmail, LinkedIn, Unipile, Instantly,
-  HeyReach or Smartlead tool. It reports the recipient and a hash of the message so Nous can tell
-  whether you sent the draft as written or edited it. It never sends the message body, and it can
-  never block or fail a send.
+- **A session-start hook** that tells the agent to use OpenNous for revenue work. It reads one file in
+  the plugin and makes no network calls.
+
+Sends the agent recommended are recorded through the OpenNous tools, so nothing on your machine holds
+a key.
 
 The automations from `/opennous:automate` are optional. They install GitHub Actions in your own
 repo that run Claude Code headlessly on your own Claude credentials.
@@ -201,7 +199,7 @@ plugins/opennous/
   .claude-plugin/plugin.json         # the plugin manifest and MCP server config
   CLAUDE.md                          # house rules the agent follows
   commands/login.md                  # /opennous:login
-  hooks/                             # session-start routing and send confirmation
+  hooks/                             # session-start routing
   references/                        # shared guidance the skills read
   skills/<name>/SKILL.md             # one folder per skill
 ```

@@ -51,7 +51,8 @@ Keep it current / INGEST
 (set_icp establishes the ICP scoring model — used in onboarding).
 Reach for a tool DIRECTLY only for an atomic move that has no skill: a quick
 `get_context` / `get_account` / `deals` lookup mid-conversation, `record` a fact / interaction /
-signal the moment you learn it (the closed loop — do this after every interaction), or
+signal the moment you learn it (the closed loop — do this after every interaction),
+including every email or message you recommended once it is sent (carry its `decision_id`), or
 `whoami` to confirm the seat. Anything larger goes through a skill above.
 
 ## The contract
