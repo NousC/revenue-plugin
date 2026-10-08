@@ -69,14 +69,14 @@ behind it** rather than writing that there is nothing: an empty heading is worse
 one.
 
 **Title:** the meeting's own title, as invited. The first line under it: the date and time, and the
-account. "Monday, September 14 · 1:00–2:00 PM · Autocorp"
+account. "Monday, September 14 · 1:00–2:00 PM · Harbourline"
 
 ### Purpose and objective
 Two bullets.
 - **Purpose:** why this meeting exists, from the record: the demo promised on the last call, a
   renewal review, a first intro. Name where it came from.
 - **Objective:** what we want out of it, stated as an outcome the operator could check afterwards.
-  "Agree a two-week pilot with Collin as owner", never "build rapport".
+  "Agree a two-week pilot with Priya as owner", never "build rapport".
 
 ### Deal overview
 Two or three sentences: stage, value, health and the direction it is moving, and the one thing the

@@ -19,7 +19,7 @@ you are on a report.
 The short form lives in `CLAUDE.md` and always applies. Restated here with the reasoning:
 
 - **Second person to the reader, third person about accounts.** The reader is the operator. The
-  accounts are people being discussed. "You owe Taimoor a reply."
+  accounts are people being discussed. "You owe Priya a reply."
 - **Numbers and names in every line.** "Three accounts went quiet" is a finding. "Several accounts
   went quiet" is a shrug. If you cannot name them, you have not finished the query.
 - **No greeting, no sign-off.** A report is not addressed to anyone.
@@ -64,7 +64,7 @@ number, or action. If you only have the category, the fact is not specific enoug
 Report:
 - ❌ "The relationship has matured into a genuine evaluation phase, with several signals pointing to
   readiness contingent on operational bandwidth."
-- ✅ "Taimoor said on 16 June he'd test the platform in 2–3 months, once retention was secure. That
+- ✅ "Priya said on 16 June she'd test the platform in 2–3 months, once retention was secure. That
   window is open. No reply since."
 
 Draft:
@@ -102,7 +102,7 @@ Fill only what the evidence supports. An empty field beats a guessed one.
 
 | Field | What it holds | Why it matters |
 |---|---|---|
-| **The test** | One go/no-go question. *"Would Bennet actually send this? Would the prospect reply in five words?"* | The single most useful field. Run it on the finished draft before showing it |
+| **The test** | One go/no-go question. *"Would you actually send this? Would the prospect reply in five words?"* | The single most useful field. Run it on the finished draft before showing it |
 | **Samples** | Two or three verbatim messages they actually sent | Voice transmits by example far better than by description |
 | **Opening lines** | How they actually start a cold or warm message | The first line is where a draft most obviously sounds like a model |
 | **Casing** | Sentence case, all-lowercase, or something else | Highly observable, and getting it wrong is instantly visible |

@@ -6,7 +6,7 @@ OpenNous unifies your team's conversations, meetings, and signals into one sourc
 agents read and act from. Connect Claude, Codex, and any agent so they know every account you sell
 to and can do the work around it, from the brief before a call to the follow-up after it.
 
-In Claude Code, this repo installs as a plugin with 23 skills on top, so your agent also tells you
+In Claude Code, this repo installs as a plugin with 16 skills on top, so your agent also tells you
 which deals need you today, forecasts what will close, and learns from what you actually send. In Codex, Cursor or any other MCP client, you connect the same tools directly.
 
 **Claude Code**
@@ -53,11 +53,9 @@ You never have to name a skill, because the plugin routes the request to the rig
 /opennous:login
 ```
 
-**3. Let the agent take it from there.** On a new workspace, onboarding starts on its own. The agent
-finds the revenue tools you already have connected in Claude Code (Fireflies, Gmail, Google
-Calendar, HubSpot or Attio, LinkedIn), imports the last 6 months of history, builds your ICP from
-the deals you have already won and lost, and finishes with a revenue report on where your pipeline
-leaks. After that, your daily starting point is *"what should I focus on today?"*
+**3. Set up your workspace in the app.** If you are new, open **Get started** at
+[app.opennous.cloud](https://app.opennous.cloud/?getstarted=1) to connect your CRM, email and meeting
+notes and start the backfill. After that, your daily starting point is *"what should I focus on today?"*
 
 To check it worked, ask *"who am I on Nous?"*. Step-by-step help and troubleshooting are in
 [INSTALL.md](./INSTALL.md).
@@ -109,7 +107,7 @@ agent you can open a skill in `plugins/opennous/skills/` and give it to your age
 
 ## Skills
 
-The Claude Code plugin ships 23 skills, grouped by the job you are doing. Each one runs when you
+The plugin ships 16 skills, grouped by the job you are doing. Each one runs when you
 describe the job, and you can also call it directly as `/opennous:<skill>`.
 
 **Your day**
@@ -128,7 +126,6 @@ describe the job, and you can also call it directly as `/opennous:<skill>`.
 | `meeting-prep` | The prep for one meeting: why it exists, everyone on the invite, what changed since the last call, the risks and the outcome to push for. |
 | `plan-account` | A full strategic plan for one account: the committee, objections, competitors, ICP fit and next moves. |
 | `reach-out` | A first touch or follow-up in your voice, built on a real hook from the record. It drafts, and you send. |
-| `sales-page` | A personalized sales page for one lead, in your company's brand, built from what they told you. |
 | `build-record` | Researches a person or company that is new to you and files them as a scored account. |
 
 **Working a deal**
@@ -148,21 +145,13 @@ describe the job, and you can also call it directly as `/opennous:<skill>`.
 | `triage-leads` | Scores a list of leads against your ICP in one batch and sorts them into priority tiers. |
 | `revenue-report` | The one report: what happened, what the CRM did not know, where it leaks, why deals are lost as the path they took, who is at risk or asking for more, what the market says, and what to do next. |
 
-**Reporting for your seat and your team**
+**Keeping it current**
 
 | Skill | What it does |
 |---|---|
-| `role-report` | The insights that matter to your role, like deal blockers for an AE or churn signals for CS. |
-
-**Setup and keeping it current**
-
-| Skill | What it does |
-|---|---|
-| `onboard` | First-time setup, end to end. It runs automatically after you sign in to a new workspace. |
-| `backfill` | Imports months of history in bulk. You can stop it and run it again safely. |
 | `sync` | Files one call transcript or email you just finished. |
-| `automate` | Turns on the automations: after every call a drafted follow-up and a coaching review, and every Sunday a coaching report. |
-| `status` | Checks that you are connected and shows what is in your workspace. |
+
+Ask `revenue-report` for "my report" to get the reporting for your own seat.
 
 ## Where your data lives
 
@@ -187,9 +176,6 @@ The Claude Code plugin installs two things, and neither of them edits your files
 
 Sends the agent recommended are recorded through the OpenNous tools, so nothing on your machine holds
 a key.
-
-The automations from `/opennous:automate` are optional. They install GitHub Actions in your own
-repo that run Claude Code headlessly on your own Claude credentials.
 
 ## Repo layout
 

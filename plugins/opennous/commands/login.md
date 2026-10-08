@@ -1,5 +1,5 @@
 ---
-description: Sign in to OpenNous in your browser, then start onboarding automatically
+description: Sign in to OpenNous, check who you are and what is set up, then show what needs you today
 ---
 
 Sign the user in, then **immediately orient and act** — don't stop at "you're signed in."
@@ -23,17 +23,13 @@ in with OAuth in the browser. No key to paste.
    count is how you know whether the graph is empty; no extra query is needed (and don't put
    `return`/`limit` inside `scope` — `scope` is strict and will reject them).
 
-3. **Then ACT immediately — this is the point of the flow. Do NOT print a "next steps" list or ask
-   permission.** Your very next action is a skill, not a suggestion:
-   - **Graph is EMPTY (fresh workspace):** say ONE line — *"You're connected as <name> · <workspace>
-     · <role>. Your graph is empty — building it from your history now."* — then **immediately invoke
-     the `onboard` skill.** Do not stop, do not offer options, do not wait for a "yes". Onboarding is
-     the whole reason they connected; just start it.
-   - **Graph already has accounts (returning user):** say *"You're connected — here's what needs you
-     today,"* then **immediately invoke the `focus` skill.**
-
-   Presenting a menu ("Natural next steps: /opennous:onboard …") instead of running the skill is a
-   failure of this command. Run it.
+3. **Then act — no "next steps" menu.**
+   - **Workspace is empty (no accounts yet):** say, in one line, *"You're connected as <name> ·
+     <workspace>. Setup happens in the OpenNous app: open Get started at
+     https://app.opennous.cloud/?getstarted=1 to connect your CRM, email and meeting notes."*
+     Then stop and wait.
+   - **Workspace has accounts:** say *"You're connected as <name> · <workspace> — here's what
+     needs you today,"* then **immediately invoke the `focus` skill.**
 
 ## Fallbacks
 - If the tools still return 401 after signing in, have the user fully quit and reopen Claude Code,

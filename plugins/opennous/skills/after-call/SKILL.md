@@ -2,9 +2,8 @@
 name: after-call
 description: >
   Runs right after a call ends — drafts the follow-up in the channel the conversation lives in
-  (email or LinkedIn) and writes a coaching review of how the call went. Normally fired
-  automatically by the after-call GitHub Action (the automation layer) the moment a meeting is
-  recorded, but you can also run it by hand: "review my last call with [account]", "draft the
+  (email or LinkedIn) and writes a coaching review of how the call went. Use it right after a
+  call: "review my last call with [account]", "draft the
   follow-up for that meeting", "how did that call go". One account, one just-ended call.
 ---
 
@@ -23,12 +22,11 @@ and you do not re-score — you turn what the app knows into a document a human 
 can send. Same call, two ends: the app is where coaching accrues and is seen; the git is where the
 written review and the draft land.
 
-## Where the trigger comes from
-This skill is the payload of the **after-call workflow** (see the `automate` skill). When a meeting
-is recorded, Nous fires a GitHub `repository_dispatch` and the workflow runs you headlessly with a
-`client_payload`: `{ workspace_id, event_type, entity_id, occurred_at, source }`. Use `entity_id`
-and `occurred_at` to find the exact call. Run by hand and you resolve the account from what the user
-named instead.
+## Where it runs
+Run it by hand after a call: resolve the account from what the user named, then find the call. In a
+coding agent the review and draft land as files in the rep's repo; in Claude.ai or the desktop app
+there is no file system, so give the draft and the review in the chat and file the review on the
+account with `add_note`.
 
 ## Scope guard (important for teams — but ONLY for members)
 The dispatch fans out to every automation-enabled seat, so on a **team** you don't want three reps
@@ -83,9 +81,6 @@ drafting the same call. Check `whoami`:
    all **whether a dated next step was secured** — and `record_insight` anything the call taught us
    about our own product/positioning. Idempotent `external_id`s. (This is the division of labour:
    OpenNous extracts and aggregates; the skill reads that and adds the per-call judgement + the draft.)
-6. **Sales page (optional).** If `automation.page` is on, hand off to the `sales-page` skill for this
-   account — it builds a personalized, on-brand page from the same context and hosts it on the user's
-   Vercel. Skip it otherwise — the draft + coaching are the core.
 
 ## Output back to the user
 When run by hand, show a tight summary inline: the deal's state in a sentence, the one thing to fix,
