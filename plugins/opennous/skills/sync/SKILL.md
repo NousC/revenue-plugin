@@ -84,7 +84,12 @@ Follow `references/insight-extraction.md` — anchor on WHO WE ARE first, the fo
 attribution rule. Produce the insights array (product/positioning/market/buyer).
 
 **7 — File the insights.**
-`record_insight(insights=[...], source_label:'<account> — <call type>', occurred_at:'<ISO>')`.
+`record_insight(insights=[...], focus:'<who said it>', source_ref:'git://…', source_label:'<account> — <call type>', occurred_at:'<ISO>')`.
+- `focus` is the external attendee who said it, from the step-2 map (email → LinkedIn URL → company
+  domain). It ties the insight to their account, so it counts there and `get_insights` returns it.
+  An insight with no focus is refused. When different people said different insights, put a `focus`
+  on each insight; the top-level one covers the rest.
+- `source_ref` is the same ref you sent `record` for this item in step 3.
 
 **7b — Review the call (sales meetings only).**
 For a meeting with a full transcript and an external attendee, follow `references/call-review.md`:
