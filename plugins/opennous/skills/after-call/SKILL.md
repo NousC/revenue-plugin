@@ -79,7 +79,7 @@ drafting the same call. Check `whoami`:
    and they already feed the app's **Coaching page** (the objection library) and role reporting. So do
    NOT re-record them. Record only a coaching-specific signal that extraction doesn't produce — above
    all **whether a dated next step was secured** — and `record_insight` anything the call taught us
-   about our own product/positioning. Idempotent `external_id`s. (This is the division of labour:
+   about our own product/positioning, with `focus` set to the attendee who said it. Idempotent `external_id`s. (This is the division of labour:
    OpenNous extracts and aggregates; the skill reads that and adds the per-call judgement + the draft.)
 
 ## Output back to the user
